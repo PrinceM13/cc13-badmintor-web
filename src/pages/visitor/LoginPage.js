@@ -9,7 +9,7 @@ export default function LoginPage() {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
 
-    const handleSubmit = async e => {
+    const handleSubmit = e => {
         e.preventDefault();
         dispatch(login(email, password));   // request --> set access token --> ser auth user info
         // clean up
