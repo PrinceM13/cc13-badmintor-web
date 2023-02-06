@@ -1,10 +1,7 @@
 import { useState } from 'react';
 import { useDispatch } from 'react-redux';
 
-import { login } from '../../redux/auth-slice'
-
-import * as authApi from '../../apis/auth-api';
-import { setAccessToken } from '../../utils/local-storage';
+import { login } from '../../redux/auth-action'
 
 export default function LoginPage() {
     const dispatch = useDispatch();
@@ -14,9 +11,7 @@ export default function LoginPage() {
 
     const handleSubmit = async e => {
         e.preventDefault();
-        const res = await authApi.login({ email, password });
-        setAccessToken(res.data.accessToken);   // store accessToken in localStorage
-        dispatch(login(res.data.accessToken));  // set authenticatedUser
+        dispatch(login(email, password));   // request --> set access token --> ser auth user info
         // clean up
         setEmail('');
         setPassword('');

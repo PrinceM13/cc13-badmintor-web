@@ -1,0 +1,16 @@
+import jwtDecode from 'jwt-decode';
+
+import * as authApi from '../apis/auth-api';
+import { setAccessToken } from '../utils/local-storage'
+
+import { setUser } from './auth-slice'
+
+export const login = (email, password) => async (dispatch) => {
+    try {
+        const res = await authApi.login({ email, password });   // get response from server (user access token)
+        setAccessToken(res.data.accessToken);                   // store accessToken in localStorage
+        dispatch(setUser(jwtDecode(res.data.accessToken)));     // set authenticatedUser with user info
+    } catch (err) {
+        console.error(err);
+    }
+};
