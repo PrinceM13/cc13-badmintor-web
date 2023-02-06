@@ -27,9 +27,11 @@ const router = createBrowserRouter([
         path: 'login',
         element: (
             <RedirectIfAuthenticate>
-                <LoginPage />
+                <MainLayout />
             </RedirectIfAuthenticate>
-        )
+        ), children: [
+            { path: '', element: <LoginPage /> }
+        ]
     },
     {
         path: '/',

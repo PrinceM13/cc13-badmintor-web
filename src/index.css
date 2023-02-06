@@ -1,3 +1,10 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+body {
+    background-color: #1E1E1E;
+    color: #fff;
+    font-family: 'Maven Pro', sans-serif;
+    /* font-family: 'Rubik Mono One', sans-serif; */
+}
