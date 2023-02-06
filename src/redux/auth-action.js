@@ -1,9 +1,10 @@
 import jwtDecode from 'jwt-decode';
 
 import * as authApi from '../apis/auth-api';
-import { setAccessToken } from '../utils/local-storage'
+import * as userApi from '../apis/user-api';
+import { removeAccessToken, setAccessToken } from '../utils/local-storage';
 
-import { setUser } from './auth-slice'
+import { setUser } from './auth-slice';
 
 export const login = (email, password) => async (dispatch) => {
     try {
@@ -12,5 +13,15 @@ export const login = (email, password) => async (dispatch) => {
         dispatch(setUser(jwtDecode(res.data.accessToken)));     // set authenticatedUser with user info
     } catch (err) {
         console.error(err);
+    }
+};
+
+export const fetchAuthUser = () => async (dispatch) => {
+    try {
+        const res = await userApi.getMyInfo();
+        dispatch(setUser(res.data.user));
+    } catch (err) {
+        console.error(err);
+        removeAccessToken();
     }
 };
