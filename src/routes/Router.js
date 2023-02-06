@@ -19,10 +19,17 @@ import ManageProduct from '../pages/admin/ManageProduct';
 import ManagePromotion from '../pages/admin/ManagePromotion';
 // super user
 import ManageEmployee from '../pages/super-user/ManageEmployee';
+import ProtectedRoute from '../features/auth/ProtectedRoute';
+import RedirectIfAuthenticate from '../features/auth/RedirectIfAuthenticate';
 
 const router = createBrowserRouter([
     {
-        path: 'login', element: <LoginPage />
+        path: 'login',
+        element: (
+            <RedirectIfAuthenticate>
+                <LoginPage />
+            </RedirectIfAuthenticate>
+        )
     },
     {
         path: '/',
@@ -36,7 +43,11 @@ const router = createBrowserRouter([
     },
     {
         path: 'user',
-        element: <MainLayout />,
+        element: (
+            <ProtectedRoute>
+                <MainLayout />
+            </ProtectedRoute>
+        ),
         children: [
             { path: 'cart', element: <CartPage /> },
             { path: 'profile', element: <ProfilePage /> }
