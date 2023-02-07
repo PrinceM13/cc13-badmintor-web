@@ -21,6 +21,8 @@ import ManagePromotion from '../pages/admin/ManagePromotion';
 import ManageEmployee from '../pages/super-user/ManageEmployee';
 import ProtectedRoute from '../features/auth/ProtectedRoute';
 import RedirectIfAuthenticate from '../features/auth/RedirectIfAuthenticate';
+// role of employee
+import { ADMIN, SUPER_USER } from '../config/constant';
 
 const router = createBrowserRouter([
     {
@@ -57,7 +59,11 @@ const router = createBrowserRouter([
     },
     {
         path: 'admin',
-        element: <MainLayout />,
+        element: (
+            <ProtectedRoute level={[ADMIN, SUPER_USER]} >
+                <MainLayout />
+            </ProtectedRoute>
+        ),
         children: [
             { path: 'categories', element: <ManageCategory /> },
             { path: 'suppliers', element: <ManageSupplier /> },
@@ -67,7 +73,11 @@ const router = createBrowserRouter([
     },
     {
         path: 'super-user',
-        element: <MainLayout />,
+        element: (
+            <ProtectedRoute level={[SUPER_USER]}>
+                <MainLayout />
+            </ProtectedRoute>
+        ),
         children: [
             { path: 'employees', element: <ManageEmployee /> }
         ]

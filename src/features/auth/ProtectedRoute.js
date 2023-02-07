@@ -1,10 +1,16 @@
 import { Navigate } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 
-export default function ProtectedRoute({ children }) {
+export default function ProtectedRoute({ children, level = [] }) {
     const authenticatedUser = useSelector(state => state.auth.authenticatedUser);
-    if (!authenticatedUser) {
-        return <Navigate to={'/login'} />
-    }
+    const role = authenticatedUser?.Employee?.role;
+    const isAuthorizedLevel = level.includes(role);
+
+    // all users
+    if (!authenticatedUser) { return <Navigate to={'/login'} /> }
+
+    // employee + level check
+    if (level.length && !isAuthorizedLevel) { return <Navigate to={'/'} /> }
+
     return children;
 }
