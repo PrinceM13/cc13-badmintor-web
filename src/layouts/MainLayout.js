@@ -1,4 +1,5 @@
 import { Outlet } from 'react-router-dom';
+import VerticalSpace from '../components/VerticalSpace';
 
 import Header from './Header';
 
@@ -6,8 +7,9 @@ export default function MainLayout() {
     return (
         <>
             <Header />
-            <div>Welcom to Badminter</div>
+            <VerticalSpace />
             <Outlet />
+            <VerticalSpace />
             <div>contact us</div>
         </>
     );
