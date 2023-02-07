@@ -16,6 +16,11 @@ export const login = (email, password) => async (dispatch) => {
     }
 };
 
+export const logout = () => dispatch => {
+    removeAccessToken();
+    dispatch(setUser(null));
+};
+
 export const fetchAuthUser = () => async (dispatch) => {
     try {
         const res = await userApi.getMyInfo();

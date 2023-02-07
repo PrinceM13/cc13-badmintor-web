@@ -1,9 +1,9 @@
 import { Link } from 'react-router-dom'
+import { useDispatch } from 'react-redux';
 
 import { BRANDS, CATEGORIES, LOGIN, LOGOUT, MY_CART, MY_PROFILE, PROMOTIONS } from '../config/constant';
-import { getAccessToken, removeAccessToken } from '../utils/local-storage';
-import { useDispatch } from 'react-redux';
-import { setUser } from '../redux/auth-slice';
+import { getAccessToken } from '../utils/local-storage';
+import { logout } from '../redux/auth-action';
 
 export default function HamburgerList({ isHambugerListShow, onClose }) {
     const dispatch = useDispatch();
@@ -23,8 +23,7 @@ export default function HamburgerList({ isHambugerListShow, onClose }) {
     }
 
     const handleOnClickLink = e => {
-        if (e.target.getAttribute('name') === LOGOUT) { removeAccessToken() }
-        dispatch(setUser(null));
+        if (e.target.getAttribute('name') === LOGOUT) { dispatch(logout()) }
         onClose();
     };
 
