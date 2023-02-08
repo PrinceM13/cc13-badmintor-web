@@ -4,6 +4,7 @@ import * as visitorApi from '../../apis/visitor-api';
 import ItemList from "../../components/ItemList";
 import { PROMOTIONS } from "../../config/constant";
 import PageTitle from "../../components/PageTitile";
+import ContentLayout from "../../layouts/ContentLayout";
 
 export default function PromotionPage() {
     const [promotions, setPromotions] = useState([]);
@@ -17,9 +18,9 @@ export default function PromotionPage() {
     }, []);
 
     return (
-        <div className="flex flex-col px-[10%]">
+        <ContentLayout>
             <PageTitle>{PROMOTIONS}</PageTitle>
             <ItemList items={promotions} keyToShow={'discount'} needBg={true} needBorder={true} />
-        </div>
+        </ContentLayout>
     );
 };

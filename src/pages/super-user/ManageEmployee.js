@@ -4,6 +4,7 @@ import * as superUserApi from '../../apis/super-user-api';
 import PageTitle from '../../components/PageTitile';
 import { MANAGE_EMPLOYEE } from '../../config/constant';
 import DisplayEmployee from '../../features/super-user/DisplayEmployee';
+import ContentLayout from '../../layouts/ContentLayout';
 
 export default function ManageEmployee() {
     const [employees, setEmployees] = useState([]);
@@ -17,9 +18,9 @@ export default function ManageEmployee() {
     }, []);
 
     return (
-        <div className="flex flex-col px-[10%]">
+        <ContentLayout>
             <PageTitle>{MANAGE_EMPLOYEE}</PageTitle>
             <DisplayEmployee data={employees} />
-        </div>
+        </ContentLayout>
     );
 };

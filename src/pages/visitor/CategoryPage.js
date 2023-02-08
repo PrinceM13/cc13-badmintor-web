@@ -4,6 +4,7 @@ import * as visitorApi from '../../apis/visitor-api';
 import ItemList from "../../components/ItemList";
 import { CATEGORIES } from "../../config/constant";
 import PageTitle from "../../components/PageTitile";
+import ContentLayout from "../../layouts/ContentLayout";
 
 export default function CategoryPage() {
     const [categories, setCategories] = useState([]);
@@ -17,9 +18,9 @@ export default function CategoryPage() {
     }, []);
 
     return (
-        <div className="flex flex-col px-[10%]">
+        <ContentLayout>
             <PageTitle>{CATEGORIES}</PageTitle>
             <ItemList items={categories} keyToShow={'category'} />
-        </div>
+        </ContentLayout>
     );
 };
