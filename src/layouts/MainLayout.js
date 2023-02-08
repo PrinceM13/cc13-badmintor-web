@@ -7,9 +7,7 @@ export default function MainLayout() {
     return (
         <>
             <Header />
-            <VerticalSpace />
             <Outlet />
-            <VerticalSpace />
             <div>contact us</div>
         </>
     );

@@ -8,7 +8,7 @@ export default function LoginPage() {
 
             {/* login header */}
 
-            <div className="w-full flex items-center justify-center text-center h-16 px-10 py-3 text-2xl">
+            <div className="w-full flex items-center justify-center text-center h-16 px-10 py-3 text-xl sm:text-2xl md:text-3xl">
                 <div className='flex gap-4'>
                     <div className="font-rubik">
                         <Link to={'/'}>

@@ -1,9 +1,9 @@
 import { useEffect, useState } from "react";
 
 import * as visitorApi from '../../apis/visitor-api';
-import VerticalSpace from "../../components/VerticalSpace";
 import ItemList from "../../components/ItemList";
 import { CATEGORIES } from "../../config/constant";
+import PageTitle from "../../components/PageTitile";
 
 export default function CategoryPage() {
     const [categories, setCategories] = useState([]);
@@ -18,9 +18,8 @@ export default function CategoryPage() {
 
     return (
         <div className="flex flex-col px-[10%]">
-            <div className="text-lg md:text-2xl">{CATEGORIES}</div>
-            <VerticalSpace />
-            <ItemList items={categories} needBg={true} />
+            <PageTitle>{CATEGORIES}</PageTitle>
+            <ItemList items={categories} keyToShow={'category'} />
         </div>
     );
 };
