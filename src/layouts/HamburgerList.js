@@ -29,7 +29,7 @@ export default function HamburgerList({ isHambugerListShow, onClose }) {
 
     const ListItems = items.map((item, idx) => (
         <Link key={idx} to={item.target}>
-            <div key={idx} name={item.label} onClick={handleOnClickLink} className={`px-7 py-3 w-full border border-1 ${idx === 0 ? '' : 'border-t-0'} border-[#D9D9D9] bg-[#767676] text-left`}>
+            <div key={idx} name={item.label} onClick={handleOnClickLink} className={`px-7 py-3 w-full border border-1 ${idx === 0 ? '' : 'border-t-0'} border-my-gray-1 bg-my-gray-2 text-left`}>
                 {item.label}
             </div>
         </Link>

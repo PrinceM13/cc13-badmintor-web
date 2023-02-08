@@ -5,7 +5,14 @@ module.exports = {
     "./node_modules/flowbite/**/*.js"
   ],
   theme: {
-    extend: {},
+    extend: {
+      colors: {
+        'my-mint': '#02FECB',
+        'my-gray-1': '#D9D9D9',
+        'my-gray-2': '#767676',
+        'my-gray-3': '#434343'
+      }
+    },
     fontFamily: {
       'rubik': ['Rubik Mono One', 'sans-serif']
     }

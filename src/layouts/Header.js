@@ -9,7 +9,7 @@ export default function Header() {
 
     return (
         <>
-            <div className="relative bg-[#767676] flex items-end text-center h-16 px-3 py-3 text-xl">
+            <div className="relative bg-my-gray-2 flex items-end text-center h-16 px-3 py-3 text-xl">
                 <div className="px-1 py-0.5 cursor-pointer" >
                     <div onClick={() => setIsHambugerListShow(!isHambugerListShow)}>
                         <HamburgerIcon />
@@ -18,7 +18,7 @@ export default function Header() {
                 </div>
 
                 <div className="flex-1 font-rubik">
-                    BAD<span className="text-[#02FECB]">MINT</span>OR
+                    BAD<span className="text-my-mint">MINT</span>OR
                 </div>
                 <div className="px-1 py-0.5">
                     <SearchIcon />
@@ -26,12 +26,12 @@ export default function Header() {
             </div>
             <div className="flex justify-center gap-4">
                 <Link to='/admin/categories'>
-                    <button className="bg-transparent hover:bg-[#02FECB] text-[#02FECB] font-semibold hover:text-[#1E1E1E] py-2 px-4 border border-[#02FECB] hover:border-transparent rounded">
+                    <button className="bg-transparent hover:bg-my-mint text-my-mint font-semibold hover:text-my-gray-3 py-2 px-4 border border-my-mint hover:border-transparent rounded">
                         ADMIN
                     </button>
                 </Link>
                 <Link to='/super-user/employees'>
-                    <button className="bg-transparent hover:bg-[#02FECB] text-[#02FECB] font-semibold hover:text-[#1E1E1E] py-2 px-4 border border-[#02FECB] hover:border-transparent rounded">
+                    <button className="bg-transparent hover:bg-my-mint text-my-mint font-semibold hover:text-my-gray-3 py-2 px-4 border border-my-mint hover:border-transparent rounded">
                         SUPER_USER
                     </button>
                 </Link>
