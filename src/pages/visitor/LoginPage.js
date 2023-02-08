@@ -1,9 +1,11 @@
 import { Link } from 'react-router-dom';
+import Modal from '../../components/Modal';
 
 import LoginForm from '../../features/auth/LoginFrom';
+import RegisterForm from '../../features/auth/RegisterForm';
 
 export default function LoginPage() {
-    return (<>
+    return (
         <div className="flex flex-col items-center justify-between mx-auto px-6 py-10 gap-10 md:h-screen md:py-20">
 
             {/* login header */}
@@ -27,12 +29,17 @@ export default function LoginPage() {
                         Sign in to your account
                     </h1>
                     <LoginForm />
+                    <p className="text-sm font-light text-my-gray-2">
+                        Don’t have an account yet? <span onClick={() => { }} className="font-medium text-white hover:underline">Sign up</span>
+                    </p>
                 </div>
+                <Modal title='Register'>
+                    <RegisterForm />
+                </Modal>
             </div>
 
             {/* dummy div for justify-between */}
             <div className='invisible'></div>
         </div>
-    </>
     );
 };
