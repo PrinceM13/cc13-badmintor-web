@@ -1,11 +1,14 @@
 import { Link } from 'react-router-dom'
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 
-import { BRANDS, CATEGORIES, LOGIN, LOGOUT, MY_CART, MY_PROFILE, PROMOTIONS } from '../config/constant';
+import { ADMIN, BRANDS, CATEGORIES, LOGIN, LOGOUT, MANAGE_EMPLOYEE, MY_CART, MY_PROFILE, PROMOTIONS, SUPER_USER } from '../config/constant';
 import { getAccessToken } from '../utils/local-storage';
 import { logout } from '../redux/auth-action';
 
 export default function HamburgerList({ isHambugerListShow, onClose }) {
+    const authenticatedUser = useSelector(state => state.auth.authenticatedUser);
+    const role = authenticatedUser?.Employee?.role;
+
     const dispatch = useDispatch();
 
     const items = [
@@ -15,9 +18,19 @@ export default function HamburgerList({ isHambugerListShow, onClose }) {
         { label: MY_CART, target: '/user/cart' }
     ];
 
+    // for all user
     if (getAccessToken()) {
         items.push({ label: MY_PROFILE, target: '/user/profile' });
         items.push({ label: LOGOUT, target: '/' });
+
+        // for ADMIN and SUPER_USER
+        if ([ADMIN, SUPER_USER].includes(role)) {
+        }
+
+        // for SUPER_USER only
+        if (role === SUPER_USER) {
+            items.push({ label: MANAGE_EMPLOYEE, target: '/super-user/employees' })
+        }
     } else {
         items.push({ label: LOGIN, target: '/login' });
     }
