@@ -19,7 +19,7 @@ export default function Header() {
 
                 <div className="flex-1 font-rubik">
                     <Link to={'/'}>
-                        BAD<span className="text-my-mint">MINT</span>OR
+                        BAD<span className="text-my-mint">MINT</span>ER
                     </Link>
                 </div>
                 <div className="px-1 py-0.5">

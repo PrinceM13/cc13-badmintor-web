@@ -1,3 +1,4 @@
+import { useState } from 'react';
 import { Link } from 'react-router-dom';
 import Modal from '../../components/Modal';
 
@@ -5,6 +6,8 @@ import LoginForm from '../../features/auth/LoginFrom';
 import RegisterForm from '../../features/auth/RegisterForm';
 
 export default function LoginPage() {
+    const [isOpen, setIsOpen] = useState(false);
+
     return (
         <div className="flex flex-col items-center justify-between mx-auto px-6 py-10 gap-10 md:h-screen md:py-20">
 
@@ -14,7 +17,7 @@ export default function LoginPage() {
                 <div className='flex gap-4'>
                     <div className="font-rubik">
                         <Link to={'/'}>
-                            BAD<span className="text-my-mint">MINT</span>OR
+                            BAD<span className="text-my-mint">MINT</span>ER
                         </Link>
                     </div>
                     <div>LOGIN</div>
@@ -30,11 +33,11 @@ export default function LoginPage() {
                     </h1>
                     <LoginForm />
                     <p className="text-sm font-light text-my-gray-2">
-                        Don’t have an account yet? <span onClick={() => { }} className="font-medium text-white hover:underline">Sign up</span>
+                        Don’t have an account yet? <span onClick={() => { setIsOpen(true) }} className="font-medium text-white cursor-pointer hover:underline">Sign up</span>
                     </p>
                 </div>
-                <Modal title='Register'>
-                    <RegisterForm />
+                <Modal title='Register' isOpen={isOpen} onClose={() => setIsOpen(false)} >
+                    <RegisterForm onClose={() => setIsOpen(false)} />
                 </Modal>
             </div>
 

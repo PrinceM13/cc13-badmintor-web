@@ -3,6 +3,7 @@ import { useDispatch } from 'react-redux';
 
 import { login } from '../../redux/auth-action';
 import VerticalSpace from '../../components/VerticalSpace';
+import LabelInput from './LabelInput';
 
 export default function LoginForm() {
     const dispatch = useDispatch();
@@ -21,44 +22,20 @@ export default function LoginForm() {
     return (
         <>
             <form className="space-y-4 md:space-y-6" onSubmit={handleSubmit}>
-                <div>
-                    <label htmlFor="email" className="block mb-2 text-sm font-medium">Your email</label>
-                    <input
-                        type="email"
-                        name="email"
-                        id="email"
-                        onChange={e => setEmail(e.target.value)}
-                        value={email}
-                        className="bg-my-gray-2 border border-my-gray-1 placeholder-my-gray-1 sm:text-sm rounded-lg focus:ring-my-mint focus:border-my-mint block w-full p-2.5"
-                        placeholder="code@camp13.com"
-                        required
-                    />
-                </div>
-                <div>
-                    <label htmlFor="password" className="block mb-2 text-sm font-medium">Password</label>
-                    <input
-                        type="password"
-                        name="password"
-                        id="password"
-                        onChange={e => setPassword(e.target.value)}
-                        value={password}
-                        className="bg-my-gray-2 border border-my-gray-1 placeholder-my-gray-1 sm:text-sm rounded-lg focus:ring-my-mint focus:border-my-mint block w-full p-2.5"
-                        placeholder="••••••••"
-                        required
-                    />
-                </div>
+                <LabelInput type='email' name='emailLogin' value={email} onChange={e => setEmail(e.target.value)} placeholder='code@camp13.com' >Your email</LabelInput>
+                <LabelInput type='password' name='passwordLogin' value={password} onChange={e => setPassword(e.target.value)} placeholder='••••••••' >Password</LabelInput>
 
                 {/* <div className="flex items-center justify-between">
-                            <div className="flex items-start">
-                                <div className="flex items-center h-5">
-                                    <input id="remember" aria-describedby="remember" type="checkbox" className="w-4 h-4 border border-gray-300 rounded bg-gray-50 focus:ring-3 focus:ring-primary-300 " required="" />
-                                </div>
-                                <div className="ml-3 text-sm">
-                                    <label htmlFor="remember" className="text-my-gray-1">Remember me</label>
-                                </div>
-                            </div>
-                            <a href="#" className="text-sm font-medium text-my-mint hover:underline">Forgot password?</a>
-                        </div> */}
+                    <div className="flex items-start">
+                        <div className="flex items-center h-5">
+                            <input id="remember" aria-describedby="remember" type="checkbox" className="w-4 h-4 border border-gray-300 rounded bg-gray-50 focus:ring-3 focus:ring-primary-300 " required="" />
+                        </div>
+                        <div className="ml-3 text-sm">
+                            <label htmlFor="remember" className="text-my-gray-1">Remember me</label>
+                        </div>
+                    </div>
+                    <a href="#" className="text-sm font-medium text-my-mint hover:underline">Forgot password?</a>
+                </div> */}
 
                 <VerticalSpace />
 
