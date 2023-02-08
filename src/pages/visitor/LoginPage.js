@@ -4,7 +4,7 @@ import LoginForm from '../../features/auth/LoginFrom';
 
 export default function LoginPage() {
     return (<>
-        <div className="flex flex-col items-center justify-between mx-auto px-6 py-10 gap-10 md:gap-0 md:h-screen md:py-20">
+        <div className="flex flex-col items-center justify-between mx-auto px-6 py-10 gap-10 md:h-screen md:py-20">
 
             {/* login header */}
 
