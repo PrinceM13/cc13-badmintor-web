@@ -69,7 +69,7 @@ export default function LoginForm() {
 
                         <button type="submit" className="w-full border border-my-mint text-my-mint hover:bg-my-mint hover:text-my-gray-3 bg-primary-600 hover:bg-primary-700 focus:ring-4 focus:outline-none focus:ring-primary-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center">Sign in</button>
                         <p className="text-sm font-light text-my-gray-2">
-                            Don’t have an account yet? <a href="#" className="font-medium text-my-mint hover:underline">Sign up</a>
+                            Don’t have an account yet? <a href="#" className="font-medium text-white hover:underline">Sign up</a>
                         </p>
                     </form>
                 </div>
