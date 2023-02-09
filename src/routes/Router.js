@@ -3,10 +3,9 @@ import { createBrowserRouter, RouterProvider } from 'react-router-dom';
 // layout
 import MainLayout from '../layouts/MainLayout';
 
-// visitor
+// visitor (Promotion use Product Page)
 import LoginPage from '../pages/visitor/LoginPage';
 import HomePage from '../pages/visitor/HomePage';
-import PromotionPage from '../pages/visitor/PromotionPage';
 import BrandPage from '../pages/visitor/BrandPage';
 import CategoryPage from '../pages/visitor/CategoryPage';
 // user
@@ -22,7 +21,7 @@ import ManageEmployee from '../pages/super-user/ManageEmployee';
 import ProtectedRoute from '../features/auth/ProtectedRoute';
 import RedirectIfAuthenticate from '../features/auth/RedirectIfAuthenticate';
 // role of employee
-import { ADMIN, CATEGORY_ID, SUPER_USER, SUPPLIER_ID } from '../config/constant';
+import { ADMIN, CATEGORY_ID, PROMOTIONS, SUPER_USER, SUPPLIER_ID } from '../config/constant';
 import ProductPage from '../pages/visitor/ProductPage';
 
 const router = createBrowserRouter([
@@ -45,7 +44,7 @@ const router = createBrowserRouter([
         path: 'promotions',
         element: <MainLayout />,
         children: [
-            { path: '', element: <PromotionPage /> },
+            { path: '', element: <ProductPage filterBy={PROMOTIONS} /> },
         ]
     },
     {
