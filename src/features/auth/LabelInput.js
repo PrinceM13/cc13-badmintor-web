@@ -8,7 +8,7 @@ export default function LabelInput({ children, name, placeholder, type = 'text',
                 id={name}
                 onChange={onChange}
                 value={value}
-                className="bg-my-gray-2 border border-my-gray-1 placeholder-my-gray-1 sm:text-sm rounded-lg focus:ring-my-mint focus:border-my-mint block w-full p-2.5"
+                className="bg-my-gray-3 border border-my-gray-1 placeholder-my-gray-1 sm:text-sm rounded-lg focus:ring-my-mint focus:border-my-mint block w-full p-2.5"
                 placeholder={placeholder}
                 required={required}
             />

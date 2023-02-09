@@ -10,7 +10,7 @@ export default function Modal({ children, title, isOpen, onClose }) {
             >
                 {/* card */}
                 <div
-                    className="relative rounded-lg p-4 w-3/4 top-10 mx-auto bg-my-gray-3"
+                    className="relative rounded-lg p-4 w-3/4 top-10 mx-auto bg-my-gray-4"
                     onMouseDown={e => e.stopPropagation()}
                 >
                     <div className="p-6 space-y-4 md:space-y-6 sm:p-8">
