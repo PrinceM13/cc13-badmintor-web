@@ -6,6 +6,9 @@ export const MY_PROFILE = 'MY PROFILE';
 export const LOGIN = 'LOGIN';
 export const LOGOUT = 'LOGOUT';
 
+export const CATEGORY_ID = 'categoryId';
+export const SUPPLIER_ID = 'supplierId';
+
 // role of employee
 export const ADMIN = 'ADMIN';
 export const SUPER_USER = 'SUPER_USER';

@@ -11,8 +11,8 @@ export default function PromotionPage() {
 
     useEffect(() => {
         const fetchData = async () => {
-            const res = await visitorApi.getAllPromotion();
-            setPromotions(res.data.records);
+            const res = await visitorApi.getAllPromotions();
+            setPromotions(res.data.products);
         }
         fetchData();
     }, []);
@@ -20,7 +20,7 @@ export default function PromotionPage() {
     return (
         <ContentLayout>
             <PageTitle>{PROMOTIONS}</PageTitle>
-            <ItemList items={promotions} keyToShow={'discount'} needBg={true} needBorder={true} />
+            <ItemList items={promotions} noLink={true} keyToShow={'name'} needBg={true} needBorder={true} />
         </ContentLayout>
     );
 };

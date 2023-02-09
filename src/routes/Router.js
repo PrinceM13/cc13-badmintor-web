@@ -22,8 +22,8 @@ import ManageEmployee from '../pages/super-user/ManageEmployee';
 import ProtectedRoute from '../features/auth/ProtectedRoute';
 import RedirectIfAuthenticate from '../features/auth/RedirectIfAuthenticate';
 // role of employee
-import { ADMIN, SUPER_USER } from '../config/constant';
-import ProductPage from '../pages/ProductPage';
+import { ADMIN, CATEGORY_ID, SUPER_USER, SUPPLIER_ID } from '../config/constant';
+import ProductPage from '../pages/visitor/ProductPage';
 
 const router = createBrowserRouter([
     {
@@ -46,7 +46,6 @@ const router = createBrowserRouter([
         element: <MainLayout />,
         children: [
             { path: '', element: <PromotionPage /> },
-            { path: ':filterId', element: <ProductPage filterBy='promotionId' /> },
         ]
     },
     {
@@ -54,7 +53,7 @@ const router = createBrowserRouter([
         element: <MainLayout />,
         children: [
             { path: '', element: <BrandPage /> },
-            { path: ':filterId', element: <ProductPage filterBy='supplierId' /> },
+            { path: ':filterId', element: <ProductPage filterBy={SUPPLIER_ID} /> },
         ]
     },
     {
@@ -62,7 +61,7 @@ const router = createBrowserRouter([
         element: <MainLayout />,
         children: [
             { path: '', element: <CategoryPage /> },
-            { path: ':filterId', element: <ProductPage filterBy='categoryId' /> },
+            { path: ':filterId', element: <ProductPage filterBy={CATEGORY_ID} /> },
         ]
     },
     {

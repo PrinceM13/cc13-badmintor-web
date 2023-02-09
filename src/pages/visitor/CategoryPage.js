@@ -11,7 +11,7 @@ export default function CategoryPage() {
 
     useEffect(() => {
         const fetchData = async () => {
-            const res = await visitorApi.getAllCategory();
+            const res = await visitorApi.getAllCategories();
             setCategories(res.data.records);
         }
         fetchData();

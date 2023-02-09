@@ -11,7 +11,7 @@ export default function BrandPage() {
 
     useEffect(() => {
         const fetchData = async () => {
-            const res = await visitorApi.getAllBrand();
+            const res = await visitorApi.getAllBrands();
             setBrands(res.data.records);
         }
         fetchData();
