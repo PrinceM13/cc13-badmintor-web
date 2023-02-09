@@ -4,7 +4,7 @@ import { TargetIcon } from '../images/index';
 
 export default function ItemCard({ children, image, needBg = false, needBorder = false }) {
     const ItemImage = <img className="rounded-t-lg" src={image} alt={children} />
-    const setBgBorder = `${needBg ? 'bg-my-gray-2' : ''} ${needBorder ? 'border border-my-gray-1' : ''}`
+    const setBgBorder = `${needBg ? 'bg-my-gray-3' : ''} ${needBorder ? 'border border-my-gray-1' : ''}`
 
     return (
         <div className={`flex flex-col gap-2 py-4 justify-center items-center w-[40%] sm:w-[220px] ${setBgBorder} rounded-lg shadow`}>
