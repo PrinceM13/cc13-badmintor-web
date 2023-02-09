@@ -23,6 +23,7 @@ import ProtectedRoute from '../features/auth/ProtectedRoute';
 import RedirectIfAuthenticate from '../features/auth/RedirectIfAuthenticate';
 // role of employee
 import { ADMIN, SUPER_USER } from '../config/constant';
+import ProductPage from '../pages/ProductPage';
 
 const router = createBrowserRouter([
     {
@@ -37,10 +38,31 @@ const router = createBrowserRouter([
         path: '/',
         element: <MainLayout />,
         children: [
-            { path: '', element: <HomePage /> },
-            { path: 'promotions', element: <PromotionPage /> },
-            { path: 'brands', element: <BrandPage /> },
-            { path: 'categories', element: <CategoryPage /> }
+            { path: '', element: <HomePage /> }
+        ]
+    },
+    {
+        path: 'promotions',
+        element: <MainLayout />,
+        children: [
+            { path: '', element: <PromotionPage /> },
+            { path: ':filterId', element: <ProductPage filterBy='promotionId' /> },
+        ]
+    },
+    {
+        path: 'brands',
+        element: <MainLayout />,
+        children: [
+            { path: '', element: <BrandPage /> },
+            { path: ':filterId', element: <ProductPage filterBy='supplierId' /> },
+        ]
+    },
+    {
+        path: 'categories',
+        element: <MainLayout />,
+        children: [
+            { path: '', element: <CategoryPage /> },
+            { path: ':filterId', element: <ProductPage filterBy='categoryId' /> },
         ]
     },
     {
