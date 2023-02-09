@@ -1,6 +1,6 @@
 import ProductCard from './ProductCard';
 
-export default function ItemList({ items, keyToShow = null }) {
+export default function ProductList({ items, keyToShow = null }) {
     return (
         <div className="flex flex-wrap justify-center gap-4">
             {items.map(item => (

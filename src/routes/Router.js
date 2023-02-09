@@ -23,6 +23,7 @@ import RedirectIfAuthenticate from '../features/auth/RedirectIfAuthenticate';
 // role of employee
 import { ADMIN, CATEGORY_ID, PROMOTIONS, SUPER_USER, SUPPLIER_ID } from '../config/constant';
 import ProductPage from '../pages/visitor/ProductPage';
+import ProductDetailPage from '../pages/visitor/ProductDetailPage';
 
 const router = createBrowserRouter([
     {
@@ -38,6 +39,13 @@ const router = createBrowserRouter([
         element: <MainLayout />,
         children: [
             { path: '', element: <HomePage /> }
+        ]
+    },
+    {
+        path: 'products',
+        element: <MainLayout />,
+        children: [
+            { path: ':productId', element: <ProductDetailPage /> }
         ]
     },
     {

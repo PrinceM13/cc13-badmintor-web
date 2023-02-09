@@ -38,10 +38,11 @@ const cartSlice = createSlice({
         addToCart: (state, action) => { state.cart.push(action.payload) },
         increaseAmount: (state, action) => { state.cart.map(el => { if (el.productId === action.payload) { el.amount++ } }) },
         decreaseAmount: (state, action) => { state.cart.map(el => { if (el.productId === action.payload && el.amount > 0) { el.amount-- } }) },
+        updateNote: (state, action) => { state.cart.map(el => { if (el.productId === action.payload.productId) { el.note = action.payload.note } }) },
         // decreaseProductInCart: (state, action) => { },
     }
 });
 
-export const { addToCart, increaseAmount, decreaseAmount } = cartSlice.actions;
+export const { addToCart, increaseAmount, decreaseAmount, updateNote } = cartSlice.actions;
 
 export default cartSlice.reducer;
