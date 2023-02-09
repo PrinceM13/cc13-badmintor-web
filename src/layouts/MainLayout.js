@@ -8,7 +8,7 @@ export default function MainLayout() {
         <>
             <Header />
             <Outlet />
-            <div>contact us</div>
+            {/* <div>contact us</div> */}
         </>
     );
 };
