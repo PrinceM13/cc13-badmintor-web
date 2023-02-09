@@ -10,7 +10,8 @@ module.exports = {
         'my-mint': '#02FECB',
         'my-gray-1': '#D9D9D9',
         'my-gray-2': '#767676',
-        'my-gray-3': '#434343'
+        'my-gray-3': '#434343',
+        'my-gray-4': '#1E1E1E'
       }
     },
     fontFamily: {
