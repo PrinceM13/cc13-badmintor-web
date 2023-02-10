@@ -3,6 +3,8 @@ import { useParams, useLocation } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
 
 import { fetchAllProductsByCategoryId, fetchAllProductsByBrandId, fetchAllProductsWithPromotion } from '../../redux/visitor-action';
+import { addToCart } from '../../redux/user-slice';
+
 import Button from '../../components/Button';
 // import PageTitle from "../../components/PageTitile";
 import VerticalSpace from '../../components/VerticalSpace';
@@ -35,6 +37,24 @@ export default function ProductDetailPage() {
     const price = product.price;
     const netPrice = (product?.Promotion?.discount && price - product?.Promotion?.discount) || price;
 
+    // need to check if product already exist in cart or not
+    const toCartItem = {
+        productId: +id,
+        name: product.name,
+        image: null,
+        amount: 1,
+        price: +price,
+        discount: price - netPrice,
+        note: product.note
+    }
+    const handleAddToCart = () => {
+        dispatch(addToCart(toCartItem));
+    }
+
+    const handleBuyNow = () => {
+        dispatch(addToCart(toCartItem));
+    }
+
     return (
         <ContentLayout>
             {/* <PageTitle>Product Detail {productId}</PageTitle> */}
@@ -62,8 +82,12 @@ export default function ProductDetailPage() {
                     </div>
                 </div>
                 <div className='flex justify-center sm:justify-end gap-2 px-4'>
-                    <Button theme='my-gray-1' size='text-sm sm:text-base lg:text-xl'>ADD TO CART</Button>
-                    <Button size='text-sm sm:text-base lg:text-xl' >BUY NOW</Button>
+                    <div onClick={handleAddToCart}>
+                        <Button theme='my-gray-1' size='text-sm sm:text-base lg:text-xl'>ADD TO CART</Button>
+                    </div>
+                    <div onClick={handleBuyNow}>
+                        <Button size='text-sm sm:text-base lg:text-xl' >BUY NOW</Button>
+                    </div>
                 </div>
             </div>
         </ContentLayout>

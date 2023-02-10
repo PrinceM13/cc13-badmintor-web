@@ -2,7 +2,7 @@ import { createSlice } from '@reduxjs/toolkit';
 
 // need to send userId too
 const cartItemDummy1 = {
-    productId: 6,
+    productId: 333,
     name: 'VICTOR-YX200',
     image: null,
     amount: 12,
@@ -11,7 +11,7 @@ const cartItemDummy1 = {
     note: 'hello world, need green one'
 }
 const cartItemDummy2 = {
-    productId: 8,
+    productId: 555,
     name: 'LINING-R300',
     image: null,
     amount: 3,
@@ -20,7 +20,7 @@ const cartItemDummy2 = {
     note: ''
 }
 const cartItemDummy3 = {
-    productId: 13,
+    productId: 999,
     name: 'YONEX-L352',
     image: null,
     amount: 2,
