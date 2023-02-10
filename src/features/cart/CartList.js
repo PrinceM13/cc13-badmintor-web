@@ -1,11 +1,9 @@
-import { useSelector } from 'react-redux'
+import { useSelector } from 'react-redux';
 
-import VerticalSpace from "../../components/VerticalSpace";
 import CartCard from "./CartCard";
 
 export default function CartList() {
     const cartItems = useSelector(state => state.user.cart);
-    const betweenLine = <VerticalSpace line={true} />
 
     return (
         <div>

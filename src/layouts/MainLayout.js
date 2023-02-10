@@ -1,5 +1,4 @@
 import { Outlet } from 'react-router-dom';
-import VerticalSpace from '../components/VerticalSpace';
 
 import Header from './Header';
 
