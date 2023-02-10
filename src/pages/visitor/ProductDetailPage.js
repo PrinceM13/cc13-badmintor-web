@@ -1,5 +1,5 @@
 import { useEffect } from 'react'
-import { useParams, useLocation } from 'react-router-dom';
+import { useParams, useLocation, useNavigate } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
 
 import { fetchAllProductsByCategoryId, fetchAllProductsByBrandId, fetchAllProductsWithPromotion } from '../../redux/visitor-action';
@@ -49,14 +49,17 @@ export default function ProductDetailPage() {
         discount: price - netPrice,
         note: product.note
     }
+
     const handleAddToCart = () => {
         console.log(isExistInCart)
         if (!isExistInCart.length) { dispatch(addToCart(toCartItem)) }
         else { dispatch(increaseAmount(id)); console.log('already exist !!!') }
     }
 
+    const navigate = useNavigate();
     const handleBuyNow = () => {
-        dispatch(addToCart(toCartItem));
+        handleAddToCart();
+        navigate('/user/cart');
     }
 
     return (
