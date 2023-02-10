@@ -31,7 +31,7 @@ export default function ProductPage({ filterBy }) {
         if (filterBy === CATEGORY_ID) { dispatch(fetchAllProductsByCategoryId(filterId)) }
         else if (filterBy === SUPPLIER_ID) { dispatch(fetchAllProductsByBrandId(filterId)) }
         else if (filterBy === PROMOTIONS) { dispatch(fetchAllProductsWithPromotion()) }
-    }, [filterBy]);
+    }, [filterBy]); // need to add filter as trigger to fetch new data when change route (because Product Page is reuse-page)
 
     return (
         <ContentLayout>
