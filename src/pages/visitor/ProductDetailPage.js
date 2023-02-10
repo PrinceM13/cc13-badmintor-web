@@ -1,13 +1,21 @@
 import { useParams } from 'react-router-dom';
-import Button from '../../components/Button';
+import { useSelector } from 'react-redux';
 
-import PageTitle from "../../components/PageTitile";
+import Button from '../../components/Button';
+// import PageTitle from "../../components/PageTitile";
 import VerticalSpace from '../../components/VerticalSpace';
 import ProductImage from '../../features/product/ProductImage';
 import ContentLayout from "../../layouts/ContentLayout";
 
 export default function ProductDetailPage() {
     const { productId } = useParams();
+
+    // need to initial to avoid product.xxx error in first run (product = undefine)
+    const [product = {}] = useSelector(state => state.visitor.products.filter(product => product.id === +productId));
+
+    const price = product.price;
+    const netPrice = (product?.Promotion?.discount && price - product?.Promotion?.discount) || price;
+
     return (
         <ContentLayout>
             {/* <PageTitle>Product Detail {productId}</PageTitle> */}
@@ -22,12 +30,15 @@ export default function ProductDetailPage() {
                     <div className='flex-shrink-0 w-[80%] max-w-[250px] sm:w-[250px] lg:max-w-[350px] lg:w-[350px]'>
                         <ProductImage />
                     </div>
-                    <div className='flex flex-col gap-4'>
-                        <div className='text-lg sm:text-2xl'>Name</div>
-                        <div className='text-sm sm:text-lg'>Product Note: Lorem Ipsum is simply dummy text of the printing. Lorem Ipsum has been the 1500s, when an unknown printer took it to make a type specimen book.</div>
-                        <div className='flex gap-4'>
-                            <div className='text-lg sm:text-2xl line-through text-my-gray-2'>9900</div>
-                            <div className='text-lg sm:text-2xl text-my-mint'>900</div>
+                    <div className='flex flex-col w-full gap-4'>
+                        <div className='text-lg sm:text-2xl'>{product.name}</div>
+                        <div className='text-sm sm:text-lg'>{product.note}</div>
+                        <div className='flex justify-between'>
+                            <div className='flex gap-4'>
+                                {price !== netPrice && <div className='text-lg sm:text-2xl line-through text-my-gray-2'>{price}</div>}
+                                <div className='text-lg sm:text-2xl text-my-mint'>{netPrice}</div>
+                            </div>
+                            <div className='text-base sm:text-xl text-my-gray-1 pr-4'>{product.quantity} Available</div>
                         </div>
                     </div>
                 </div>
