@@ -27,7 +27,7 @@ export default function ProductDetailPage() {
         if (currentFilter === CATEGORIES.toLocaleLowerCase()) { dispatch(fetchAllProductsByCategoryId(filterId)) }
         else if (currentFilter === BRANDS.toLocaleLowerCase()) { dispatch(fetchAllProductsByBrandId(filterId)) }
         else if (currentFilter === PROMOTIONS.toLocaleLowerCase()) { dispatch(fetchAllProductsWithPromotion()) }
-    }, []); // need to add filter as trigger to fetch new data when change route (because Product Page is reuse-page)
+    }, []);
 
     // need to initial to avoid product.xxx error in first run (product = undefine)
     const [product = {}] = useSelector(state => state.visitor[productDataFrom].filter(product => product.id === +id));
