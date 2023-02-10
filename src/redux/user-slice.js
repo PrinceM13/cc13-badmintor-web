@@ -24,7 +24,7 @@ const cartSlice = createSlice({
                 image: el.Product.image !== 'dummy' || null,
                 amount: el.amount,
                 price: +el.Product.price,
-                discount: el.Product.Promotion.isActive ? +el.Product.Promotion.discount : 0,
+                discount: el.Product?.Promotion?.isActive ? +el.Product?.Promotion?.discount : 0,
                 note: el.Product.note
             }));
             state.cart = myCart;

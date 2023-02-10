@@ -5,6 +5,8 @@ import { useSelector, useDispatch } from 'react-redux';
 import { fetchAllProductsByCategoryId, fetchAllProductsByBrandId, fetchAllProductsWithPromotion } from '../../redux/visitor-action';
 import { addToCart, increaseAmount } from '../../redux/user-slice';
 
+import * as userApi from '../../apis/user-api';
+
 import Button from '../../components/Button';
 // import PageTitle from "../../components/PageTitile";
 import VerticalSpace from '../../components/VerticalSpace';
@@ -33,8 +35,25 @@ export default function ProductDetailPage() {
 
     // need to initial to avoid product.xxx error in first run (product = undefine)
     const [product = {}] = useSelector(state => state.visitor[productDataFrom].filter(product => product.id === id));
-    const cart = useSelector(state => state.user.cart);
-    const isExistInCart = cart.filter(item => item.productId === id);
+    const cartItems = useSelector(state => state.user.cart);
+    const isExistInCart = cartItems.filter(item => item.productId === id);
+
+    // post data to cart table (timeout 5 sec)
+    useEffect(() => {
+        const debouncePostToDatabase = async () => {
+            try {
+                const res = await userApi.addMyCart(cartItems);
+                console.log(res.data.message);
+            } catch (err) {
+                console.error(err);
+            }
+        };
+        const handleTimeout = setTimeout(() => {
+            debouncePostToDatabase();
+        }, 5000);
+
+        return () => clearTimeout(handleTimeout);
+    }, [cartItems]);
 
     const price = product.price;
     const netPrice = (product?.Promotion?.discount && price - product?.Promotion?.discount) || price;
