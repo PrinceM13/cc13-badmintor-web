@@ -1,21 +1,17 @@
 import { useEffect, useState } from "react";
+import { useDispatch, useSelector } from 'react-redux';
 
-import * as visitorApi from '../../apis/visitor-api';
+import { fetchAllCategories } from '../../redux/visitor-action';
 import ItemList from "../../components/ItemList";
 import { CATEGORIES } from "../../config/constant";
 import PageTitle from "../../components/PageTitile";
 import ContentLayout from "../../layouts/ContentLayout";
 
 export default function CategoryPage() {
-    const [categories, setCategories] = useState([]);
+    const dispatch = useDispatch();
+    const categories = useSelector(state => state.visitor.categories);
 
-    useEffect(() => {
-        const fetchData = async () => {
-            const res = await visitorApi.getAllCategories();
-            setCategories(res.data.records);
-        }
-        fetchData();
-    }, []);
+    useEffect(() => { dispatch(fetchAllCategories()) }, []);
 
     return (
         <ContentLayout>

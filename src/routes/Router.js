@@ -41,18 +41,19 @@ const router = createBrowserRouter([
             { path: '', element: <HomePage /> }
         ]
     },
-    {
-        path: 'products',
-        element: <MainLayout />,
-        children: [
-            { path: ':productId', element: <ProductDetailPage /> }
-        ]
-    },
+    // {
+    //     path: 'products',
+    //     element: <MainLayout />,
+    //     children: [
+    //         { path: ':productId', element: <ProductDetailPage /> }
+    //     ]
+    // },
     {
         path: 'promotions',
         element: <MainLayout />,
         children: [
             { path: '', element: <ProductPage filterBy={PROMOTIONS} /> },
+            { path: ':productId', element: <ProductDetailPage /> }
         ]
     },
     {
@@ -61,6 +62,7 @@ const router = createBrowserRouter([
         children: [
             { path: '', element: <BrandPage /> },
             { path: ':filterId', element: <ProductPage filterBy={SUPPLIER_ID} /> },
+            { path: ':filterId/:productId', element: <ProductDetailPage /> }
         ]
     },
     {
@@ -69,6 +71,7 @@ const router = createBrowserRouter([
         children: [
             { path: '', element: <CategoryPage /> },
             { path: ':filterId', element: <ProductPage filterBy={CATEGORY_ID} /> },
+            { path: ':filterId/:productId', element: <ProductDetailPage /> }
         ]
     },
     {

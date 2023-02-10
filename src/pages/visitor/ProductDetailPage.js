@@ -9,9 +9,10 @@ import ContentLayout from "../../layouts/ContentLayout";
 
 export default function ProductDetailPage() {
     const { productId } = useParams();
+    const id = productId.split('-')[1];
 
     // need to initial to avoid product.xxx error in first run (product = undefine)
-    const [product = {}] = useSelector(state => state.visitor.products.filter(product => product.id === +productId));
+    const [product = {}] = useSelector(state => state.visitor.products.filter(product => product.id === +id));
 
     const price = product.price;
     const netPrice = (product?.Promotion?.discount && price - product?.Promotion?.discount) || price;

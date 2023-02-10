@@ -8,7 +8,7 @@ export default function ProductCard({ children, id, image }) {
 
     const ItemImage = <img className="rounded-t-lg" src={image} alt={children} />;
     const setBgBorder = `${needBg ? 'bg-my-gray-3' : ''} ${needBorder ? 'border border-my-gray-1' : ''}`;
-    const redirectPath = '/products/' + id;   // need to be string
+    const redirectPath = 'product-' + id;   // need to be string
 
     return (
         <div className={`flex flex-col gap-2 py-4 justify-center items-center w-[40%] sm:w-[220px] ${setBgBorder} rounded-lg shadow`}>
