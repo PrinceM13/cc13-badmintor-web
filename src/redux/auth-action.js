@@ -5,6 +5,8 @@ import * as userApi from '../apis/user-api';
 import { removeAccessToken, setAccessToken } from '../utils/local-storage';
 
 import { setUser } from './auth-slice';
+import { clearVisitor } from './visitor-slice';
+import { clearUser } from './user-slice';
 
 export const login = (email, password) => async (dispatch) => {
     try {
@@ -19,6 +21,8 @@ export const login = (email, password) => async (dispatch) => {
 export const logout = () => dispatch => {
     removeAccessToken();
     dispatch(setUser(null));
+    dispatch(clearVisitor());
+    dispatch(clearUser());
 };
 
 export const fetchAuthUser = () => async (dispatch) => {

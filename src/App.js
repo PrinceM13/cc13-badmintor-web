@@ -1,5 +1,5 @@
 import { useEffect } from 'react';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 
 import Router from "./routes/Router";
 import { fetchAuthUser } from './redux/auth-action';
@@ -9,10 +9,10 @@ import { getAccessToken } from './utils/local-storage';
 function App() {
   const dispatch = useDispatch();
 
-  useEffect(() => {
-    if (getAccessToken()) { dispatch(fetchAuthUser()) } // user info
-    dispatch(getMyCart()) // user cart
-  }, []);
+  // user info
+  useEffect(() => { if (getAccessToken()) { dispatch(fetchAuthUser()) } }, []);
+  // user cart
+  useEffect(() => { if (getAccessToken()) { dispatch(getMyCart()) } }, [useSelector(state => state.auth.authenticatedUser)]);
 
   return (
     <>

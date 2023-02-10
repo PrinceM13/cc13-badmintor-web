@@ -1,17 +1,6 @@
 import { createSlice } from '@reduxjs/toolkit';
 
-const cartItemDummy = {
-    productId: 0,
-    name: '',
-    image: '',
-    amount: 0,
-    price: 0,
-    discount: 0,
-    note: ''
-}
-
-// const initialCart = [cartItemDummy1, cartItemDummy2, cartItemDummy3]
-const initialCart = [cartItemDummy]
+const initialCart = []
 
 const cartSlice = createSlice({
     name: 'user',
@@ -33,13 +22,29 @@ const cartSlice = createSlice({
         increaseAmount: (state, action) => { state.cart.map(el => { if (el.productId === action.payload) { el.amount++ } }) },
         decreaseAmount: (state, action) => { state.cart.map(el => { if (el.productId === action.payload && el.amount > 0) { el.amount-- } }) },
         updateNote: (state, action) => { state.cart.map(el => { if (el.productId === action.payload.productId) { el.note = action.payload.note } }) },
-        // decreaseProductInCart: (state, action) => { },
+        // clear
+        clearUser: state => {
+            state.cart = initialCart;
+            state.profile = {};
+        }
     }
 });
 
-export const { addToCart, increaseAmount, decreaseAmount, updateNote, setCart } = cartSlice.actions;
+export const { addToCart, increaseAmount, decreaseAmount, updateNote, setCart, clearUser } = cartSlice.actions;
 
 export default cartSlice.reducer;
+
+// const cartItemDummy = {
+//     productId: 0,
+//     name: '',
+//     image: '',
+//     amount: 0,
+//     price: 0,
+//     discount: 0,
+//     note: ''
+// }
+
+// const initialCart = [cartItemDummy1, cartItemDummy2, cartItemDummy3]
 
 // // need to send userId too
 // const cartItemDummy1 = {
