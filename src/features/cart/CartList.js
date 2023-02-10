@@ -1,27 +1,13 @@
-import { useEffect } from 'react';
 import { useSelector } from 'react-redux';
 
 import CartCard from "./CartCard";
-import * as userApi from '../../apis/user-api'
+import useDebouncePost from '../../hooks/useDebouncePost';
 
 export default function CartList() {
     const cartItems = useSelector(state => state.user.cart);
 
-    useEffect(() => {
-        const debouncePostToDatabase = async () => {
-            try {
-                const res = await userApi.addMyCart(cartItems);
-                console.log(res.data.message);
-            } catch (err) {
-                console.error(err);
-            }
-        };
-        const handleTimeout = setTimeout(() => {
-            debouncePostToDatabase();
-        }, 5000);
-
-        return () => clearTimeout(handleTimeout);
-    }, [cartItems]);
+    // post data to server (timeout 5 sec)
+    useDebouncePost();
 
     return (
         <div>
