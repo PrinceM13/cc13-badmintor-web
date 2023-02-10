@@ -3,7 +3,7 @@ import { useParams, useLocation } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
 
 import { fetchAllProductsByCategoryId, fetchAllProductsByBrandId, fetchAllProductsWithPromotion } from '../../redux/visitor-action';
-import { addToCart } from '../../redux/user-slice';
+import { addToCart, increaseAmount } from '../../redux/user-slice';
 
 import Button from '../../components/Button';
 // import PageTitle from "../../components/PageTitile";
@@ -14,7 +14,7 @@ import { BRANDS, CATEGORIES, PROMOTIONS } from '../../config/constant';
 
 export default function ProductDetailPage() {
     const { productId, filterId } = useParams();
-    const id = productId.split('-')[1];
+    const id = +productId.split('-')[1];
 
     const location = useLocation();
     const currentFilter = location.pathname.split('/')[1];
@@ -32,14 +32,16 @@ export default function ProductDetailPage() {
     }, []);
 
     // need to initial to avoid product.xxx error in first run (product = undefine)
-    const [product = {}] = useSelector(state => state.visitor[productDataFrom].filter(product => product.id === +id));
+    const [product = {}] = useSelector(state => state.visitor[productDataFrom].filter(product => product.id === id));
+    const cart = useSelector(state => state.user.cart);
+    const isExistInCart = cart.filter(item => item.productId === id);
 
     const price = product.price;
     const netPrice = (product?.Promotion?.discount && price - product?.Promotion?.discount) || price;
 
     // need to check if product already exist in cart or not
     const toCartItem = {
-        productId: +id,
+        productId: id,
         name: product.name,
         image: null,
         amount: 1,
@@ -48,7 +50,9 @@ export default function ProductDetailPage() {
         note: product.note
     }
     const handleAddToCart = () => {
-        dispatch(addToCart(toCartItem));
+        console.log(isExistInCart)
+        if (!isExistInCart.length) { dispatch(addToCart(toCartItem)) }
+        else { dispatch(increaseAmount(id)); console.log('already exist !!!') }
     }
 
     const handleBuyNow = () => {

@@ -22,8 +22,8 @@ export default function CartCard({ isFirst = false, img, name, note = '', price,
                         </div>
                         <div className="flex justify-between">
                             <div className="flex items-center gap-2 text-xs">
-                                {price !== netPrice && <div className="line-through text-my-gray-2">{netPrice}</div>}
-                                <div className="text-my-mint">{price}</div>
+                                {price !== netPrice && <div className="line-through text-my-gray-2">{price}</div>}
+                                <div className="text-my-mint">{netPrice}</div>
                             </div>
                             <Button size="text-xs" theme="my-gray-1" p="px-2 py-1" >edit note</Button>
                         </div>
