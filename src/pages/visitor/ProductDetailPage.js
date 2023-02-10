@@ -1,18 +1,36 @@
-import { useParams } from 'react-router-dom';
-import { useSelector } from 'react-redux';
+import { useEffect } from 'react'
+import { useParams, useLocation } from 'react-router-dom';
+import { useSelector, useDispatch } from 'react-redux';
 
+import { fetchAllProductsByCategoryId, fetchAllProductsByBrandId, fetchAllProductsWithPromotion } from '../../redux/visitor-action';
 import Button from '../../components/Button';
 // import PageTitle from "../../components/PageTitile";
 import VerticalSpace from '../../components/VerticalSpace';
 import ProductImage from '../../features/product/ProductImage';
 import ContentLayout from "../../layouts/ContentLayout";
+import { BRANDS, CATEGORIES, PROMOTIONS } from '../../config/constant';
 
 export default function ProductDetailPage() {
-    const { productId } = useParams();
+    const { productId, filterId } = useParams();
     const id = productId.split('-')[1];
 
+    const location = useLocation();
+    const currentFilter = location.pathname.split('/')[1];
+    let productDataFrom;
+    if (currentFilter === CATEGORIES.toLocaleLowerCase()) { productDataFrom = 'categoryProducts' }
+    else if (currentFilter === BRANDS.toLocaleLowerCase()) { productDataFrom = 'brandProducts' }
+    else if (currentFilter === PROMOTIONS.toLocaleLowerCase()) { productDataFrom = 'promotionProducts' }
+
+    // for refresh
+    const dispatch = useDispatch();
+    useEffect(() => {
+        if (currentFilter === CATEGORIES.toLocaleLowerCase()) { dispatch(fetchAllProductsByCategoryId(filterId)) }
+        else if (currentFilter === BRANDS.toLocaleLowerCase()) { dispatch(fetchAllProductsByBrandId(filterId)) }
+        else if (currentFilter === PROMOTIONS.toLocaleLowerCase()) { dispatch(fetchAllProductsWithPromotion()) }
+    }, []); // need to add filter as trigger to fetch new data when change route (because Product Page is reuse-page)
+
     // need to initial to avoid product.xxx error in first run (product = undefine)
-    const [product = {}] = useSelector(state => state.visitor.products.filter(product => product.id === +id));
+    const [product = {}] = useSelector(state => state.visitor[productDataFrom].filter(product => product.id === +id));
 
     const price = product.price;
     const netPrice = (product?.Promotion?.discount && price - product?.Promotion?.discount) || price;
