@@ -3,6 +3,7 @@ import { useParams, useLocation, useNavigate } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
 
 import { fetchAllProductsByCategoryId, fetchAllProductsByBrandId, fetchAllProductsWithPromotion } from '../../redux/visitor-action';
+import { setPreviousPath } from '../../redux/visitor-slice';
 import { addToCart, increaseAmount } from '../../redux/user-slice';
 
 import useDebouncePost from '../../hooks/useDebouncePost';
@@ -55,13 +56,17 @@ export default function ProductDetailPage() {
         note: product.note
     }
 
+    const authenticatedUser = useSelector(state => state.auth.authenticatedUser);
+    const navigate = useNavigate();
     const handleAddToCart = () => {
+        if (!authenticatedUser) {
+            dispatch(setPreviousPath(location.pathname));
+            navigate('/login');
+        }
         console.log(isExistInCart)
         if (!isExistInCart.length) { dispatch(addToCart(toCartItem)) }
         else { dispatch(increaseAmount(id)); console.log('already exist !!!') }
     }
-
-    const navigate = useNavigate();
     const handleBuyNow = () => {
         handleAddToCart();
         navigate('/user/cart');

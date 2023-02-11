@@ -7,7 +7,9 @@ const initialVisitor = {
     products: [],
     brandProducts: [],
     categoryProducts: [],
-    promotionProducts: []
+    promotionProducts: [],
+    // path
+    previousPath: ''
 }
 
 const visitorSlice = createSlice({
@@ -21,6 +23,8 @@ const visitorSlice = createSlice({
         setBrandProducts: (state, action) => { state.brandProducts = action.payload },
         setCategoryProducts: (state, action) => { state.categoryProducts = action.payload },
         setPromotionProducts: (state, action) => { state.promotionProducts = action.payload },
+        // path
+        setPreviousPath: (state, action) => { state.previousPath = action.payload },
         // clear
         clearVisitor: state => {
             state.brands = [];
@@ -30,10 +34,11 @@ const visitorSlice = createSlice({
             state.brandProducts = [];
             state.categoryProducts = [];
             state.promotionProducts = [];
+            state.previousPath = '';
         }
     }
 });
 
-export const { setBrands, setCategories, setProducts, setBrandProducts, setCategoryProducts, setPromotionProducts, clearVisitor } = visitorSlice.actions;
+export const { setBrands, setCategories, setProducts, setBrandProducts, setCategoryProducts, setPromotionProducts, clearVisitor, setPreviousPath } = visitorSlice.actions;
 
 export default visitorSlice.reducer;

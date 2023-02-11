@@ -1,7 +1,9 @@
 import { useState } from 'react';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
+import { useNavigate } from 'react-router-dom';
 
 import { login } from '../../redux/auth-action';
+import { setPreviousPath } from '../../redux/visitor-slice';
 import VerticalSpace from '../../components/VerticalSpace';
 import LabelInput from './LabelInput';
 
@@ -11,12 +13,19 @@ export default function LoginForm() {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
 
+    const isPreviousPathExist = useSelector(state => state.visitor.previousPath);
+    const navigate = useNavigate();
     const handleSubmit = e => {
         e.preventDefault();
         dispatch(login(email, password));   // request --> set access token --> ser auth user info
         // clean up
         setEmail('');
         setPassword('');
+        // re-direct if from product-detail-page
+        if (isPreviousPathExist) {
+            dispatch(setPreviousPath(''));
+            navigate(isPreviousPathExist);
+        }
     }
 
     return (
