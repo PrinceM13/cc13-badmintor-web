@@ -1,4 +1,5 @@
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
+import { useNavigate } from 'react-router-dom';
 
 import { createOrderItems } from '../../redux/user-slice';
 import { MY_CART } from "../../config/constant";
@@ -10,15 +11,19 @@ import Button from '../../components/Button';
 
 export default function CartPage() {
     const dispatch = useDispatch();
+    const navigate = useNavigate();
+    const cartItems = useSelector(state => state.user.cart);
 
     const handleCreateOrder = () => {
-        console.log('create order please');
-        dispatch(createOrderItems(/* selected items from cart */));
+        const toOrderItems = cartItems.filter(el => el.selected === true);
+        dispatch(createOrderItems(toOrderItems));
+        navigate('/user/confirm-order');
     }
 
     const handleBack = () => {
         console.log('back please');
     }
+
     return (
         <ContentLayout>
             <PageTitle>{MY_CART}</PageTitle>

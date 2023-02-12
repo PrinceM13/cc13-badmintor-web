@@ -30,6 +30,7 @@ const cartSlice = createSlice({
         setOrderIdToOrderItems: (state, action) => { state.orderItems.map(el => el = { ...el, orderId: action.payload }) },
         // clear
         clearCartItemSelected: state => { state.cart.map(el => { el.selected = false }) },
+        clearOrderItems: state => { state.orderItems = initialCart },
         clearUser: state => {
             state.cart = initialCart;
             state.profile = {};
@@ -37,7 +38,8 @@ const cartSlice = createSlice({
     }
 });
 
-export const { setCart, setCartItemSelected, clearCartItemSelected, addToCart, increaseAmount, decreaseAmount, updateNote, createOrderItems, createOrder, setOrderIdToOrderItems, clearUser } = cartSlice.actions;
+export const { setCart, setCartItemSelected, addToCart, increaseAmount, decreaseAmount /*, updateNote*/, createOrderItems,
+    createOrder, setOrderIdToOrderItems, clearCartItemSelected, clearOrderItems, clearUser } = cartSlice.actions;
 
 export default cartSlice.reducer;
 

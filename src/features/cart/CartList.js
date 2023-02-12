@@ -1,7 +1,7 @@
 import { useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 
-import { clearCartItemSelected } from '../../redux/user-slice';
+import { clearCartItemSelected, clearOrderItems } from '../../redux/user-slice';
 import CartCard from "./CartCard";
 import useDebouncePost from '../../hooks/useDebouncePost';
 
@@ -14,7 +14,10 @@ export default function CartList() {
 
     // clear cart selected
     useEffect(() => {
-        return () => { dispatch(clearCartItemSelected()) };
+        return () => {
+            dispatch(clearCartItemSelected());
+            // dispatch(clearOrderItems());
+        };
     }, []);
 
     return (
