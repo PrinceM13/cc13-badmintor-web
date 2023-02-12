@@ -20,7 +20,7 @@ export default function ConfirmOrder() {
             <VerticalSpace />
             <ButtonGroup />
             <VerticalSpace />
-            <InfoBox>pick-up detail:</InfoBox>
+            <InfoBox isSelected={true}>pick-up detail:</InfoBox>
             <VerticalSpace />
             <InfoBox>shipping detail:</InfoBox>
             <VerticalSpace />

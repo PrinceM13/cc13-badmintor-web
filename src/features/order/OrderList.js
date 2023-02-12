@@ -1,11 +1,21 @@
+import { useSelector } from 'react-redux';
+
 import OrderCard from "./OrderCard";
 
 export default function OrderList() {
+    const orderItems = useSelector(state => state.user.orderItems);
+
     return (
         <div>
-            <OrderCard></OrderCard>
-            <OrderCard></OrderCard>
-            <OrderCard></OrderCard>
+            {orderItems.map((item, idx) => (
+                <OrderCard
+                    key={item.productId}
+                    name={item.name}
+                    netPrice={item.price - item.discount}
+                    idx={idx}
+                    last={orderItems.length - 1}
+                />
+            ))}
         </div>
     );
 };
