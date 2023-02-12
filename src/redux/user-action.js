@@ -1,5 +1,5 @@
 import * as userApi from '../apis/user-api';
-import { setCart } from './user-slice';
+import { setCart, setProfile } from './user-slice';
 
 export const getMyCart = () => async dispatch => {
     try {
@@ -8,4 +8,13 @@ export const getMyCart = () => async dispatch => {
     } catch (err) {
         console.error(err);
     }
-}
+};
+
+export const getMyInfo = () => async dispatch => {
+    try {
+        const res = await userApi.getMyInfo();
+        dispatch(setProfile(res.data.user));
+    } catch (err) {
+        console.error(err);
+    }
+};

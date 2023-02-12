@@ -1,12 +1,12 @@
 import Button from "../../components/Button";
 
-export default function InfoBox({ children, isSelected = false }) {
+export default function InfoBox({ children, detail, isSelected = false }) {
     return (
         <div className={`flex flex-col justify-between w-full px-4 gap-4 ${isSelected ? 'border border-my-gray-1 rounded-lg py-4' : 'opacity-20'}`}>
             <div>{children}</div>
-            <div className="text-xs h-full">detail: {'Lorem ipsum dolor sit amet, vis volutpat repudiare eu, ut his prodesset adolescens reprimique. Vim phaedrum reprimique te, an habeo elaboraret usu'}</div>
+            <div className="text-xs h-full whitespace-pre-wrap px-6">{detail}</div>
             <div className="flex justify-end">
-                <Button size="text-xs" theme="my-gray-1" p="px-2 py-1" >edit note</Button>
+                <Button size="text-xs" theme="my-gray-1" p="px-2 py-1" >edit detail</Button>
             </div>
         </div>
     );

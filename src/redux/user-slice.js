@@ -6,6 +6,8 @@ const cartSlice = createSlice({
     name: 'user',
     initialState: { profile: {}, cart: initialCart, order: {}, orderItems: initialCart },    // cart[x] = { productId: 3, amount: 2, price: 300, discount: 50, note: '' }
     reducers: {
+        setProfile: (state, action) => { state.profile = action.payload },
+        // cart
         setCart: (state, action) => {
             const myCart = action.payload.map(el => ({
                 productId: el.productId,
@@ -38,7 +40,7 @@ const cartSlice = createSlice({
     }
 });
 
-export const { setCart, setCartItemSelected, addToCart, increaseAmount, decreaseAmount /*, updateNote*/, createOrderItems,
+export const { setProfile, setCart, setCartItemSelected, addToCart, increaseAmount, decreaseAmount /*, updateNote*/, createOrderItems,
     createOrder, setOrderIdToOrderItems, clearCartItemSelected, clearOrderItems, clearUser } = cartSlice.actions;
 
 export default cartSlice.reducer;
