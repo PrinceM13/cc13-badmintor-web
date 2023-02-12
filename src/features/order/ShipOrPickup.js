@@ -13,6 +13,8 @@ export default function ShipOrPickup() {
     const [pickupDate, setPickupDate] = useState(InitialPickupDate);
 
     const userInfo = useSelector(state => state.user.profile);
+    const isPickup = useSelector(state => state.user.isPickup);
+
     const userPhone = `${String(userInfo.phone).slice(0, 3)}-${String(userInfo.phone).slice(3, 7)}-${String(userInfo.phone).slice(7)}`
 
     const pickupDetail = `date: ${pickupDate.toLocaleString('en-US', { day: 'numeric', month: 'short', year: 'numeric' })}
@@ -21,16 +23,15 @@ number: ${userPhone}`
 
     const shippingDetail = `name: ${userInfo.firstName} ${userInfo.lastName}
 number: ${userPhone}
-address: ${userInfo.address}
-`
+address: ${userInfo.address}`
 
     return (
         <>
-            <ButtonGroup />
+            <ButtonGroup isSelectedFirstButton={isPickup} />
             <VerticalSpace />
-            <InfoBox detail={pickupDetail} isSelected={true}>pick-up detail:</InfoBox>
+            <InfoBox detail={pickupDetail} isSelected={isPickup}>pick-up detail:</InfoBox>
             <VerticalSpace />
-            <InfoBox detail={shippingDetail}>shipping detail:</InfoBox>
+            <InfoBox detail={shippingDetail} isSelected={!isPickup}>shipping detail:</InfoBox>
         </>
     );
 };
