@@ -11,7 +11,7 @@ import OrderList from "../../features/order/OrderList";
 import ContentLayout from "../../layouts/ContentLayout";
 import ShipOrPickup from '../../features/order/ShipOrPickup';
 
-export default function ConfirmOrder() {
+export default function ConfirmOrderPage() {
 
     const navigate = useNavigate();
     const dispatch = useDispatch();
@@ -22,7 +22,7 @@ export default function ConfirmOrder() {
         return acc;
     }, 0);
 
-    const handleChoosePayment = () => { console.log('go --> choose payment') };
+    const handleChoosePayment = () => { navigate('/user/payment') };
     const handleBack = () => { navigate('/user/cart') };
 
     // user info (update to make sure)
@@ -40,7 +40,7 @@ export default function ConfirmOrder() {
             <div className="w-full bg-my-mint rounded-lg py-2 text-my-gray-3 text-center"> Total = ฿{total}</div>
             <VerticalSpace />
             <div onClick={handleChoosePayment}>
-                <Button width="w-full" theme="my-gray-1" rounded="rounded-full">CHOOSE PAYMENT</Button>
+                <Button width="w-full" theme="my-mint" rounded="rounded-full">GO TO PAYMENT</Button>
             </div>
             <VerticalSpace />
             <div onClick={handleBack}>

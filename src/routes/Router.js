@@ -24,7 +24,8 @@ import RedirectIfAuthenticate from '../features/auth/RedirectIfAuthenticate';
 import { ADMIN, PROMOTIONS, SUPER_USER, BRANDS, CATEGORIES } from '../config/constant';
 import ProductPage from '../pages/visitor/ProductPage';
 import ProductDetailPage from '../pages/visitor/ProductDetailPage';
-import ConfirmOrder from '../pages/user/ConfirmOrder';
+import ConfirmOrderPage from '../pages/user/ConfirmOrderPage';
+import PaymentPage from '../pages/user/PaymentPage';
 
 const router = createBrowserRouter([
     {
@@ -85,7 +86,8 @@ const router = createBrowserRouter([
         children: [
             { path: 'cart', element: <CartPage /> },
             { path: 'profile', element: <ProfilePage /> },
-            { path: 'confirm-order', element: <ConfirmOrder /> }
+            { path: 'confirm-order', element: <ConfirmOrderPage /> },
+            { path: 'payment', element: <PaymentPage /> }
         ]
     },
     {
