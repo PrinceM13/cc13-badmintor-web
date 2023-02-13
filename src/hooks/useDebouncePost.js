@@ -3,7 +3,7 @@ import { useSelector } from 'react-redux';
 
 import * as userApi from '../apis/user-api';
 
-export default function useDebouncePost(time = 5000) {
+export default function useDebouncePost(time = 2000) {
     const authenticatedUser = useSelector(state => state.auth.authenticatedUser);
     const cartItems = useSelector(state => state.user.cart);
     useEffect(() => {

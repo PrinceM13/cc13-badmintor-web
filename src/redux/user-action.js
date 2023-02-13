@@ -1,7 +1,7 @@
 import { useSelector } from 'react-redux';
 
 import * as userApi from '../apis/user-api';
-import { setCart, setProfile, setOrder, updateCart } from './user-slice';
+import { setCart, setProfile, setOrder, updateCartWithDeleteId } from './user-slice';
 
 export const getMyCart = () => async dispatch => {
     try {
@@ -18,6 +18,15 @@ export const getMyInfo = () => async dispatch => {
         dispatch(setProfile(res.data.user));
     } catch (err) {
         console.error(err);
+    }
+};
+
+export const deleteFromMyCart = productId => async dispatch => {
+    try {
+        await userApi.deleteItemInCart(productId);      // server
+        dispatch(updateCartWithDeleteId([productId]));    // update front-end cart
+    } catch (err) {
+        console.log(err);
     }
 };
 
@@ -56,7 +65,7 @@ export const createOrder = (rewardId, note, shippingInfo, pickupDate, orderItems
             manageDeleteItemInCart(item.productId); // server
             deleteProductIds.push(item.productId);  // to update front-end
         });
-        dispatch(updateCart(deleteProductIds));     // update front-end cart
+        dispatch(updateCartWithDeleteId(deleteProductIds));     // update front-end cart
     } catch (err) {
         console.error(err);
     }

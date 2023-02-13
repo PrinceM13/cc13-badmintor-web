@@ -17,7 +17,7 @@ export default function CartCard({ isFirst = false, img, name, note = '', price,
                 <div className="flex justify-center items-center px-2 sm:px-5 md:px-10">
                     <input
                         type='checkbox'
-                        checked={selected}
+                        // checked={selected}
                         onChange={handleCheckboxChange}
                         className="text-my-gray-2 bg-my-gray-4 focus:ring-my-gray-2 rounded-sm border-my-mint"
                     />

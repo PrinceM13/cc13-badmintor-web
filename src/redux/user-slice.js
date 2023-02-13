@@ -21,7 +21,7 @@ const cartSlice = createSlice({
             }));
             state.cart = myCart;
         },
-        updateCart: (state, action) => { state.cart = state.cart.filter(el => !action.payload.includes(el.productId)) },
+        updateCartWithDeleteId: (state, action) => { state.cart = state.cart.filter(el => !action.payload.includes(el.productId)) },
         setCartItemSelected: (state, action) => { state.cart.map(el => { if (el.productId === action.payload.id) { el.selected = action.payload.selected } }) },
         addToCart: (state, action) => { state.cart.push(action.payload) },
         increaseAmount: (state, action) => { state.cart.map(el => { if (el.productId === action.payload) { el.amount++ } }) },
@@ -44,7 +44,7 @@ const cartSlice = createSlice({
 });
 
 export const { setProfile, setCart, setCartItemSelected, addToCart, increaseAmount, decreaseAmount /*, updateNote*/, createOrderItems, setIsPickup,
-    updateCart, setOrder, setOrderIdToOrderItems, clearCartItemSelected, clearOrderItems, clearUser } = cartSlice.actions;
+    updateCartWithDeleteId, setOrder, setOrderIdToOrderItems, clearCartItemSelected, clearOrderItems, clearUser } = cartSlice.actions;
 
 export default cartSlice.reducer;
 

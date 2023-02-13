@@ -1,5 +1,6 @@
 import { useDispatch } from 'react-redux';
 
+import { deleteFromMyCart } from '../redux/user-action'
 import { increaseAmount, decreaseAmount } from '../redux/user-slice';
 import Button from "./Button";
 
@@ -11,7 +12,11 @@ export default function ButtonPlusMinus({ amount, productId }) {
                 <Button theme="my-gray-1" size="text-2xl" p="px-2" width="" border="" >+</Button>
             </div>
             <div className="text-center text-lg" >{amount}</div>
-            <div onClick={() => { dispatch(decreaseAmount(productId)) }}>
+            <div onClick={() => {
+                if (amount === 1) { dispatch(deleteFromMyCart(productId)) }
+                dispatch(decreaseAmount(productId))
+            }}
+            >
                 <Button theme="my-gray-1" size="text-2xl" p="px-2" width="" border="" >-</Button>
             </div>
         </div>
