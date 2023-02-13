@@ -21,6 +21,7 @@ const cartSlice = createSlice({
             }));
             state.cart = myCart;
         },
+        updateCart: (state, action) => { state.cart = state.cart.filter(el => !action.payload.includes(el.productId)) },
         setCartItemSelected: (state, action) => { state.cart.map(el => { if (el.productId === action.payload.id) { el.selected = action.payload.selected } }) },
         addToCart: (state, action) => { state.cart.push(action.payload) },
         increaseAmount: (state, action) => { state.cart.map(el => { if (el.productId === action.payload) { el.amount++ } }) },
@@ -28,20 +29,7 @@ const cartSlice = createSlice({
         // updateNote: (state, action) => { state.cart.map(el => { if (el.productId === action.payload.productId) { el.note = action.payload.note } }) },
         // order
         createOrderItems: (state, action) => { state.orderItems = action.payload },  // copy selected items from cart to orderItems (will delete from cart just when confirm order)
-        createOrder: (state, action) => {
-            const myOrder = {
-                // userId: should add at server-side
-                rewardId: action.payload.rewardId,      // dummy 0 for now should edit to optional (allow null)
-                discount: 0,                            // (check from rewardId) dicount from reward not promotion, skip for now lol
-                includedRewardItem: false,              // skip reward for now
-                status: 'WAITING_FOR_PAYMENT',
-                paymentReceipt: '',
-                paymentDateTime: '',                    // should (allow null, wait for payment)
-                userNote: action.payload.note
-            }
-            console.log(myOrder)
-            state.order = myOrder;
-        },
+        setOrder: (state, action) => { state.order = action.payload },
         setOrderIdToOrderItems: (state, action) => { state.orderItems.map(el => el = { ...el, orderId: action.payload }) },
         // pickup
         setIsPickup: (state, action) => { state.isPickup = action.payload },
@@ -56,7 +44,7 @@ const cartSlice = createSlice({
 });
 
 export const { setProfile, setCart, setCartItemSelected, addToCart, increaseAmount, decreaseAmount /*, updateNote*/, createOrderItems, setIsPickup,
-    createOrder, setOrderIdToOrderItems, clearCartItemSelected, clearOrderItems, clearUser } = cartSlice.actions;
+    updateCart, setOrder, setOrderIdToOrderItems, clearCartItemSelected, clearOrderItems, clearUser } = cartSlice.actions;
 
 export default cartSlice.reducer;
 

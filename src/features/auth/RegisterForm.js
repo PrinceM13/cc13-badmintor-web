@@ -43,7 +43,7 @@ export default function RegisterForm({ onClose }) {
             <LabelInput name='password' value={input.password} onChange={handleChangeInput} placeholder='••••••••' type='password' >Password</LabelInput>
             <LabelInput name='confirmPassword' value={input.confirmPassword} onChange={handleChangeInput} placeholder='••••••••' type='password' >Confirm Password</LabelInput>
             <VerticalSpace />
-            <button type="submit" className="w-full border border-my-mint text-my-mint hover:bg-my-mint hover:text-my-gray-3 bg-primary-600 hover:bg-primary-700 focus:ring-4 focus:outline-none focus:ring-primary-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center">Sign in</button>
+            <button type="submit" className="w-full border border-my-mint text-my-mint hover:bg-my-mint hover:text-my-gray-3 bg-primary-600 hover:bg-primary-700 focus:ring-4 focus:outline-none focus:ring-primary-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center">Register</button>
         </form>
     );
 };

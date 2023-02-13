@@ -33,7 +33,7 @@ export default function LoginPage() {
                     </h1>
                     <LoginForm />
                     <p className="text-sm font-light text-my-gray-2">
-                        Don’t have an account yet? <span onClick={() => { setIsOpen(true) }} className="font-medium text-white cursor-pointer hover:underline">Sign up</span>
+                        Don’t have an account yet? <span onClick={() => { setIsOpen(true) }} className="font-medium text-white cursor-pointer hover:underline">Register</span>
                     </p>
                 </div>
                 <Modal title='Register' isOpen={isOpen} onClose={() => setIsOpen(false)} >
