@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { useNavigate } from 'react-router-dom'
 
+import { createOrder } from '../../redux/user-slice';
 import { getMyInfo } from '../../redux/user-action';
 import Button from "../../components/Button";
 import PageTitle from "../../components/PageTitile";
@@ -12,6 +13,8 @@ import ContentLayout from "../../layouts/ContentLayout";
 import ShipOrPickup from '../../features/order/ShipOrPickup';
 
 export default function ConfirmOrderPage() {
+    const [rewardId, setRewardId] = useState('');
+    const [note, setNote] = useState('');
 
     const navigate = useNavigate();
     const dispatch = useDispatch();
@@ -22,7 +25,11 @@ export default function ConfirmOrderPage() {
         return acc;
     }, 0);
 
-    const handleChoosePayment = () => { navigate('/user/payment') };
+    const handleChoosePayment = () => {
+        dispatch(createOrder({ rewardId, note }));
+        navigate('/user/payment');
+    };
+
     const handleBack = () => { navigate('/user/cart') };
 
     // user info (update to make sure)
@@ -33,7 +40,16 @@ export default function ConfirmOrderPage() {
             <PageTitle>CONFIRM ORDER</PageTitle>
             <OrderList />
             <VerticalSpace />
-            <LabelInput placeholder='reward code ?' needLabel={false} >hello</LabelInput>
+            {/* will change input to text from db */}
+            <LabelInput
+                placeholder='reward code ?'
+                type='number'
+                needLabel={false}
+                value={rewardId}
+                onChange={e => setRewardId(+e.target.value)}
+            >
+                hello
+            </LabelInput>
             <VerticalSpace />
             <ShipOrPickup />
             <VerticalSpace />

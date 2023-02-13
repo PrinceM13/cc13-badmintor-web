@@ -28,7 +28,20 @@ const cartSlice = createSlice({
         // updateNote: (state, action) => { state.cart.map(el => { if (el.productId === action.payload.productId) { el.note = action.payload.note } }) },
         // order
         createOrderItems: (state, action) => { state.orderItems = action.payload },  // copy selected items from cart to orderItems (will delete from cart just when confirm order)
-        createOrder: (state, action) => { state.order = action.payload },
+        createOrder: (state, action) => {
+            const myOrder = {
+                // userId: should add at server-side
+                rewardId: action.payload.rewardId,      // dummy 0 for now should edit to optional (allow null)
+                discount: 0,                            // (check from rewardId) dicount from reward not promotion, skip for now lol
+                includedRewardItem: false,              // skip reward for now
+                status: 'WAITING_FOR_PAYMENT',
+                paymentReceipt: '',
+                paymentDateTime: '',                    // should (allow null, wait for payment)
+                userNote: action.payload.note
+            }
+            console.log(myOrder)
+            state.order = myOrder;
+        },
         setOrderIdToOrderItems: (state, action) => { state.orderItems.map(el => el = { ...el, orderId: action.payload }) },
         // pickup
         setIsPickup: (state, action) => { state.isPickup = action.payload },
