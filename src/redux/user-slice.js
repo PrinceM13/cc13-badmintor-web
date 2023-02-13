@@ -4,7 +4,7 @@ const initialCart = []
 
 const cartSlice = createSlice({
     name: 'user',
-    initialState: { profile: {}, cart: initialCart, order: {}, orderItems: initialCart, isPickup: true },    // cart[x] = { productId: 3, amount: 2, price: 300, discount: 50, note: '' }
+    initialState: { profile: {}, cart: initialCart, order: {}, orders: [], orderItems: initialCart, isPickup: true },    // cart[x] = { productId: 3, amount: 2, price: 300, discount: 50, note: '' }
     reducers: {
         setProfile: (state, action) => { state.profile = action.payload },
         // cart
@@ -30,6 +30,7 @@ const cartSlice = createSlice({
         // order
         createOrderItems: (state, action) => { state.orderItems = action.payload },  // copy selected items from cart to orderItems (will delete from cart just when confirm order)
         setOrder: (state, action) => { state.order = action.payload },
+        setOrders: (state, action) => { state.orders = action.payload },
         setOrderIdToOrderItems: (state, action) => { state.orderItems.map(el => el = { ...el, orderId: action.payload }) },
         // pickup
         setIsPickup: (state, action) => { state.isPickup = action.payload },
@@ -44,7 +45,7 @@ const cartSlice = createSlice({
 });
 
 export const { setProfile, setCart, setCartItemSelected, addToCart, increaseAmount, decreaseAmount /*, updateNote*/, createOrderItems, setIsPickup,
-    updateCartWithDeleteId, setOrder, setOrderIdToOrderItems, clearCartItemSelected, clearOrderItems, clearUser } = cartSlice.actions;
+    updateCartWithDeleteId, setOrder, setOrders, setOrderIdToOrderItems, clearCartItemSelected, clearOrderItems, clearUser } = cartSlice.actions;
 
 export default cartSlice.reducer;
 

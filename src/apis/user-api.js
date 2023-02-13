@@ -8,3 +8,4 @@ export const deleteItemInCart = productId => axios.delete('/user/cart/' + produc
 // order
 export const createOrder = input => axios.post('user/orders', input);
 export const createOrderItems = input => axios.post('user/order-items', input);
+export const getMyOrders = () => axios.get('/user/orders');

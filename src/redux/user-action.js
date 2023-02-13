@@ -1,7 +1,5 @@
-import { useSelector } from 'react-redux';
-
 import * as userApi from '../apis/user-api';
-import { setCart, setProfile, setOrder, updateCartWithDeleteId } from './user-slice';
+import { setCart, setProfile, setOrder, updateCartWithDeleteId, setOrders } from './user-slice';
 
 export const getMyCart = () => async dispatch => {
     try {
@@ -57,6 +55,8 @@ export const createOrder = (rewardId, note, shippingInfo, pickupDate, orderItems
         const res = await userApi.createOrder(myOrder);
         const orderId = res.data.order.id;
         const newOrderItems = orderItems.map(item => ({ ...item, orderId }));
+        const orders = await userApi.getMyOrders();
+        dispatch(setOrders(orders.data.orders));  // set state
         // create order items
         await userApi.createOrderItems(newOrderItems);
         // delete cart

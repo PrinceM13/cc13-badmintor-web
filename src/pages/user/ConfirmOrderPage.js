@@ -37,7 +37,7 @@ export default function ConfirmOrderPage() {
 
     const orderItems = useSelector(state => state.user.orderItems);
     const total = orderItems.reduce((acc, item) => {
-        acc += (item.price - item.discount)
+        acc += item.amount * (item.price - item.discount);
         return acc;
     }, 0);
 

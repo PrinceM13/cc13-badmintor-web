@@ -11,7 +11,7 @@ export default function OrderList() {
                 <OrderCard
                     key={item.productId}
                     name={item.name}
-                    netPrice={item.price - item.discount}
+                    totalPrice={item.amount * (item.price - item.discount)}
                     idx={idx}
                     last={orderItems.length - 1}
                 />

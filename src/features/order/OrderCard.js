@@ -1,4 +1,4 @@
-export default function OrderCard({ name, netPrice, idx, last }) {
+export default function OrderCard({ name, totalPrice, idx, last }) {
     let borderStyle = '';
     if (idx === 0) { borderStyle = 'rounded-t-lg' }
     if (idx === last) { borderStyle = 'rounded-b-lg' }
@@ -9,7 +9,7 @@ export default function OrderCard({ name, netPrice, idx, last }) {
                 {name}
             </div>
             <div className="text-my-mint">
-                {netPrice}
+                {totalPrice}
             </div>
         </div>
     );
