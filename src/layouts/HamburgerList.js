@@ -42,14 +42,14 @@ export default function HamburgerList({ isHambugerListShow, onClose }) {
 
     const ListItems = items.map((item, idx) => (
         <Link key={idx} to={item.target}>
-            <div key={idx} name={item.label} onClick={handleOnClickLink} className={`px-7 py-3 w-full border border-1 ${idx === 0 ? '' : 'border-t-0'} border-my-gray-1 bg-my-gray-2 text-left`}>
+            <div key={idx} name={item.label} onClick={handleOnClickLink} className={`px-7 py-3 w-full border ${idx === items.length - 1 ? 'rounded-b-lg' : ''} border-my-gray-1 bg-my-gray-2 text-left`}>
                 {item.label}
             </div>
         </Link>
     ));
 
     return (
-        <div className="absolute w-3/4 top-16 left-0 text-base">
+        <div className="absolute w-3/4 top-16 left-0 text-base rounded-lg bor">
             {isHambugerListShow && ListItems}
         </div>
 

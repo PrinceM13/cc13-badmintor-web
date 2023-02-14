@@ -27,6 +27,7 @@ export default function AddEmployeeForm({ onClose }) {
         // update front-end dropdown
         const tempArray = currentUsers.map(user => (user.id === +input.userId ? { ...user, Employee: { role: input.role } } : user));
         setCurrentUsers(tempArray);
+        onClose();
     };
 
     return (

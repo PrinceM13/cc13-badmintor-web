@@ -3,10 +3,10 @@ export default function TableRow({ children, idx }) {
         <>
             {
                 idx === 0
-                    ? <th scope="row" className="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
+                    ? <th scope="row" className="px-6 py-4 font-medium text-my-gray-1 whitespace-nowrap">
                         {children}
                     </th>
-                    : <td className="px-6 py-4">
+                    : <td className="px-6 py-4 text-my-gray-1">
                         {children}
                     </td>
             }

@@ -6,7 +6,7 @@ export default function TableHead({ tableHead, needEditColumn }) {
     </>
 
     return (
-        <thead className="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
+        <thead className="text-xs text-my-gray-1 uppercase bg-my-gray-2">
             <tr>
                 {tableHead.map((el, idx) => (<th key={idx} scope="col" className="px-6 py-3">{el}</th>))}
                 {needEditColumn && editColumn}
