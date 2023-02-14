@@ -31,7 +31,6 @@ export const deleteEmployeeWithId = employeeId => async dispatch => {
 export const updateEmployeeWithId = (employeeId, role) => async dispatch => {
     try {
         const res = await superUserApi.updateEmployee(employeeId, { role });
-        console.log(typeof employeeId)
         dispatch(updateEmployee({ employeeId, role }));
     } catch (err) {
         console.error(err);

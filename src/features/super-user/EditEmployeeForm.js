@@ -16,7 +16,6 @@ export default function EditEmployeeForm({ onClose, deleteUser, currentUsers, se
     const handleChangeInput = e => setRole(e.target.value);
 
     const handleConfirm = () => {
-        console.log(role)
         if (!role && role === 'OTHER') { onClose() }
         dispatch(updateEmployeeWithId(deleteUser.employeeId, role));
         // update front-end dropdown
