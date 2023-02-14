@@ -1,7 +1,6 @@
-import { useEffect, useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
+import { useState } from "react";
+import { useDispatch } from "react-redux";
 
-import { getAllUser } from '../../redux/admin-action';
 import Button from "../../components/Button";
 import VerticalSpace from "../../components/VerticalSpace";
 import { ADMIN, SUPER_USER } from "../../config/constant";

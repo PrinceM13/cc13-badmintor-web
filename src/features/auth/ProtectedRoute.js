@@ -5,6 +5,7 @@ export default function ProtectedRoute({ children, level = [] }) {
     const authenticatedUser = useSelector(state => state.auth.authenticatedUser);
     const role = authenticatedUser?.Employee?.role;
     const isAuthorizedLevel = level.includes(role);
+    console.log('----------> ',authenticatedUser)
 
     // all users
     if (!authenticatedUser) { return <Navigate to={'/login'} /> }

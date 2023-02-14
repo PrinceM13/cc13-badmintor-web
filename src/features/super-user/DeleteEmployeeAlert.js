@@ -1,11 +1,10 @@
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 
 import { deleteEmployeeWithId } from '../../redux/super-user-action';
 import Button from "../../components/Button";
 import PageTitile from '../../components/PageTitile';
 
 export default function DeleteEmployeeAlert({ onClose, deleteUser, currentUsers, setCurrentUsers }) {
-    const users = useSelector(state => state.admin.users);
     const dispatch = useDispatch();
 
     const handleConfirm = () => {

@@ -9,6 +9,7 @@ import TableHead from "./TableHead";
 import AddEmployeeForm from '../../features/super-user/AddEmployeeForm';
 import DeleteEmployeeAlert from '../../features/super-user/DeleteEmployeeAlert';
 import { getAllUser } from '../../redux/admin-action';
+import EditEmployeeForm from '../../features/super-user/EditEmployeeForm';
 
 export default function Table({ tableHead = [], tableBody = [], needEditColumn = true, tableBodyEmployeeId }) {
     // const tableHead = ['Column 1', 'Column 2', 'Column 3', 'Column 4'];
@@ -38,7 +39,14 @@ export default function Table({ tableHead = [], tableBody = [], needEditColumn =
             <div className="overflow-x-auto shadow-md rounded-lg border border-my-gray-2">
                 <table className="w-full text-xs text-left">
                     <TableHead tableHead={tableHead} needEditColumn={needEditColumn} />
-                    <TableBody tableBody={tableBody} needEditColumn={needEditColumn} tableBodyEmployeeId={tableBodyEmployeeId} setDeleteUser={setDeleteUser} setOnDelete={() => { setOnDelete(true) }} />
+                    <TableBody
+                        tableBody={tableBody}
+                        needEditColumn={needEditColumn}
+                        tableBodyEmployeeId={tableBodyEmployeeId}
+                        setDeleteUser={setDeleteUser}
+                        setOnDelete={() => { setOnDelete(true) }}
+                        setOnEdit={() => { setOnEdit(true) }}
+                    />
                 </table>
             </div>
         </div>
@@ -47,6 +55,9 @@ export default function Table({ tableHead = [], tableBody = [], needEditColumn =
         </Modal>
         <Modal title='CAUTION !!!' isOpen={onDelete} onClose={() => setOnDelete(false)} titleSize='text-xl md:text-3xl text-yellow-400'>
             <DeleteEmployeeAlert deleteUser={deleteUser} onClose={() => setOnDelete(false)} currentUsers={currentUsers} setCurrentUsers={setCurrentUsers} />
+        </Modal>
+        <Modal title='UPDATE EMPLOYEE' isOpen={onEdit} onClose={() => setOnEdit(false)} titleSize='text-xl md:text-3xl text-my-mint'>
+            <EditEmployeeForm deleteUser={deleteUser} onClose={() => setOnEdit(false)} currentUsers={currentUsers} setCurrentUsers={setCurrentUsers} />
         </Modal>
     </>
 
