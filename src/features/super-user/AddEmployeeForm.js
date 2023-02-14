@@ -7,23 +7,26 @@ import VerticalSpace from "../../components/VerticalSpace";
 import { ADMIN, SUPER_USER } from "../../config/constant";
 import { addEmployeeWithRole } from "../../redux/super-user-action";
 
-const initialInput = { userId: 'user', role: 'role' };
+const initialInput = { userId: 0, role: '' };
 
 export default function AddEmployeeForm({ onClose }) {
-    const [input, setInput] = useState(initialInput);
     const users = useSelector(state => state.admin.users);
+    const [input, setInput] = useState(initialInput);
+    const [currentUsers, setCurrentUsers] = useState(users);
     const dispatch = useDispatch();
 
-    useEffect(() => { dispatch(getAllUser()) }, [users]);
+    useEffect(() => { dispatch(getAllUser()) }, []);
+    useEffect(() => { setCurrentUsers(users) }, [users]);
 
-    const handleChangeInput = e => {
-        setInput({ ...input, [e.target.name]: e.target.value });
-    };
+    const handleChangeInput = e => { setInput({ ...input, [e.target.name]: e.target.value }) };
 
     const handleSubmitForm = async e => {
         e.preventDefault();
         dispatch(addEmployeeWithRole(input));
         setInput(initialInput);
+        // update front-end dropdown
+        const tempArray = currentUsers.map(user => (user.id === +input.userId ? { ...user, Employee: { role: input.role } } : user));
+        setCurrentUsers(tempArray);
     };
 
     return (
@@ -35,7 +38,7 @@ export default function AddEmployeeForm({ onClose }) {
                 className="text-sm md:text-lg bg-my-gray-3 border border-my-gray-1 placeholder-my-gray-1 sm:text-sm rounded-lg focus:ring-my-mint focus:border-my-mint block w-full p-2.5"
             >
                 <option value='user'>- please select name -</option>
-                {users.map(user => (
+                {currentUsers.map(user => (
                     user.Employee ? null : <option key={user.id} value={user.id}>{user.firstName} {user.lastName}</option>
                 ))}
             </select>
