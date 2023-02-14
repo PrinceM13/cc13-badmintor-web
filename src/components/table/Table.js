@@ -1,3 +1,6 @@
+import { useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+
 import Modal from '../Modal';
 import { useState } from "react";
 import AddRow from "./AddRow";
@@ -5,6 +8,7 @@ import TableBody from "./TableBody";
 import TableHead from "./TableHead";
 import AddEmployeeForm from '../../features/super-user/AddEmployeeForm';
 import DeleteEmployeeAlert from '../../features/super-user/DeleteEmployeeAlert';
+import { getAllUser } from '../../redux/admin-action';
 
 export default function Table({ tableHead = [], tableBody = [], needEditColumn = true, tableBodyEmployeeId }) {
     // const tableHead = ['Column 1', 'Column 2', 'Column 3', 'Column 4'];
@@ -13,6 +17,13 @@ export default function Table({ tableHead = [], tableBody = [], needEditColumn =
     //     ['Code Camp13', 'Row 2', 'Row 3', 'Row 4'],
     //     ['Code Camp13', 'Row 2', 'Row 3', 'Row 4']
     // ];
+
+    const users = useSelector(state => state.admin.users);
+    const [currentUsers, setCurrentUsers] = useState(users);
+    const dispatch = useDispatch();
+
+    useEffect(() => { dispatch(getAllUser()) }, []);
+    useEffect(() => { setCurrentUsers(users) }, [users]);
 
     const [onAdd, setOnAdd] = useState(false);
     const [onEdit, setOnEdit] = useState(false);
@@ -32,10 +43,10 @@ export default function Table({ tableHead = [], tableBody = [], needEditColumn =
             </div>
         </div>
         <Modal title='ADD NEW EMPLOYEE' isOpen={onAdd} onClose={() => setOnAdd(false)} titleSize='text-lg md:text-2xl' >
-            <AddEmployeeForm onClose={() => setOnAdd(false)} />
+            <AddEmployeeForm onClose={() => setOnAdd(false)} currentUsers={currentUsers} setCurrentUsers={setCurrentUsers} />
         </Modal>
         <Modal title='CAUTION !!!' isOpen={onDelete} onClose={() => setOnDelete(false)} titleSize='text-xl md:text-3xl text-yellow-400'>
-            <DeleteEmployeeAlert deleteUser={deleteUser} onClose={() => setOnDelete(false)} />
+            <DeleteEmployeeAlert deleteUser={deleteUser} onClose={() => setOnDelete(false)} currentUsers={currentUsers} setCurrentUsers={setCurrentUsers} />
         </Modal>
     </>
 

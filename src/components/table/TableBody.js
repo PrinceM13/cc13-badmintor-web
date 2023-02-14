@@ -5,8 +5,8 @@ import TableRow from "./TableRow";
 
 export default function TableBody({ tableBody, needEditColumn, tableBodyEmployeeId, setDeleteUser, setOnDelete }) {
     const authenticatedUser = useSelector(state => state.auth.authenticatedUser);
-    const handleDelClick = (employeeId, name) => {
-        setDeleteUser({ employeeId, name });
+    const handleDelClick = (employeeId, name, userId) => {
+        setDeleteUser({ employeeId, name, userId });
         setOnDelete();
     }
 
@@ -22,7 +22,7 @@ export default function TableBody({ tableBody, needEditColumn, tableBodyEmployee
                                     <div>
                                         <Button size="text-xs" theme="my-gray-1">Edit</Button>
                                     </div>
-                                    <div onClick={() => handleDelClick(tableBodyEmployeeId[idxRow].employeeId, row[0])}>
+                                    <div onClick={() => handleDelClick(tableBodyEmployeeId[idxRow].employeeId, row[0], tableBodyEmployeeId[idxRow].userId)}>
                                         <Button size="text-xs" theme="red-400" >Del</Button>
                                     </div>
                                 </div>

@@ -7,16 +7,11 @@ import VerticalSpace from "../../components/VerticalSpace";
 import { ADMIN, SUPER_USER } from "../../config/constant";
 import { addEmployeeWithRole } from "../../redux/super-user-action";
 
-const initialInput = { userId: 0, role: '' };
+const initialInput = { userId: 0, role: 'ADMIN' };
 
-export default function AddEmployeeForm({ onClose }) {
-    const users = useSelector(state => state.admin.users);
+export default function AddEmployeeForm({ onClose, currentUsers, setCurrentUsers }) {
     const [input, setInput] = useState(initialInput);
-    const [currentUsers, setCurrentUsers] = useState(users);
     const dispatch = useDispatch();
-
-    useEffect(() => { dispatch(getAllUser()) }, []);
-    useEffect(() => { setCurrentUsers(users) }, [users]);
 
     const handleChangeInput = e => { setInput({ ...input, [e.target.name]: e.target.value }) };
 
@@ -49,7 +44,6 @@ export default function AddEmployeeForm({ onClose }) {
                 onChange={handleChangeInput}
                 className="text-sm md:text-lg bg-my-gray-3 border border-my-gray-1 placeholder-my-gray-1 sm:text-sm rounded-lg focus:ring-my-mint focus:border-my-mint block w-full p-2.5"
             >
-                <option value='role'>- please select role -</option>
                 <option value={ADMIN}>{ADMIN}</option>
                 <option value={SUPER_USER}>{SUPER_USER}</option>
             </select>

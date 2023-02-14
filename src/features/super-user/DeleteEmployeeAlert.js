@@ -4,14 +4,14 @@ import { deleteEmployeeWithId } from '../../redux/super-user-action';
 import Button from "../../components/Button";
 import PageTitile from '../../components/PageTitile';
 
-export default function DeleteEmployeeAlert({ onClose, deleteUser }) {
+export default function DeleteEmployeeAlert({ onClose, deleteUser, currentUsers, setCurrentUsers }) {
     const users = useSelector(state => state.admin.users);
     const dispatch = useDispatch();
 
     const handleConfirm = () => {
         dispatch(deleteEmployeeWithId(deleteUser.employeeId));
         // update front-end dropdown
-        const tempArray = currentUsers.map(user => (user.id === +input.userId ? { ...user, Employee: { role: input.role } } : user));
+        const tempArray = currentUsers.map(user => (user.id === deleteUser.userId ? { ...user, Employee: null } : user));
         setCurrentUsers(tempArray);
         onClose();
     }
