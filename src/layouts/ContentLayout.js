@@ -1,6 +1,6 @@
-export default function ContentLayout({ children }) {
+export default function ContentLayout({ children, clearPadding = false }) {
     return (
-        <div className="flex flex-col px-[5%] sm:px-[10%] md:px-[15%]">
+        <div className={`flex flex-col ${clearPadding ? '' : 'px-[5%] sm:px-[10%] md:px-[15%]'}`}>
             {children}
         </div>
     );
