@@ -29,7 +29,7 @@ export default function ConfirmOrderPage() {
         });
     }, [userInfo]);
 
-    const [rewardId, setRewardId] = useState(1);
+    const [rewardId, setRewardId] = useState('');
     const [note, setNote] = useState('green one please');
     const [pickupDate, setPickupDate] = useState(InitialPickupDate);
 
@@ -43,7 +43,7 @@ export default function ConfirmOrderPage() {
     }, 0);
 
     const handleChoosePayment = () => {
-        dispatch(createOrder(rewardId, note, shippingInfo, pickupDate.toISOString(), orderItems, isPickup));
+        dispatch(createOrder(1, note, shippingInfo, pickupDate.toISOString(), orderItems, isPickup));
         console.log(pickupDate.toISOString())
         navigate('/user/payment');
     };
