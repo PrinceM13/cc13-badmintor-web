@@ -18,6 +18,7 @@ InitialPickupDate.setHours(10, 30, 0, 0);
 
 export default function ConfirmOrderPage() {
     const userInfo = useSelector(state => state.user.profile);
+    const isPickup = useSelector(state => state.user.isPickup);
     const [shippingInfo, setShippingInfo] = useState({});
     useEffect(() => {
         setShippingInfo({
@@ -42,7 +43,8 @@ export default function ConfirmOrderPage() {
     }, 0);
 
     const handleChoosePayment = () => {
-        dispatch(createOrder(rewardId, note, shippingInfo, pickupDate.toISOString(), orderItems));
+        dispatch(createOrder(rewardId, note, shippingInfo, pickupDate.toISOString(), orderItems, isPickup));
+        console.log(pickupDate.toISOString())
         navigate('/user/payment');
     };
 

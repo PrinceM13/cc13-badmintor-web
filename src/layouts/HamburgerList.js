@@ -1,14 +1,14 @@
 import { Link } from 'react-router-dom'
 import { useDispatch, useSelector } from 'react-redux';
 
-import { ADMIN, BRANDS, CATEGORIES, LOGIN, LOGOUT, MANAGE_EMPLOYEE, MY_CART, MY_PROFILE, PROMOTIONS, SUPER_USER } from '../config/constant';
+import { ADMIN, BRANDS, CATEGORIES, LOGIN, LOGOUT, MANAGE_EMPLOYEE, MY_CART, MY_ORDER, MY_PROFILE, PROMOTIONS, SUPER_USER } from '../config/constant';
 import { getAccessToken } from '../utils/local-storage';
 import { logout } from '../redux/auth-action';
 
 export default function HamburgerList({ isHambugerListShow, onClose }) {
     const authenticatedUser = useSelector(state => state.auth.authenticatedUser);
+    const myOrders = useSelector(state => state.user.orders);
     const role = authenticatedUser?.Employee?.role;
-
     const dispatch = useDispatch();
 
     const items = [
@@ -20,7 +20,8 @@ export default function HamburgerList({ isHambugerListShow, onClose }) {
 
     // for all user
     if (getAccessToken()) {
-        items.push({ label: MY_PROFILE, target: '/user/profile' });
+        myOrders.length !== 0 && items.push({ label: MY_ORDER, target: '/user/orders' })
+        // items.push({ label: MY_PROFILE, target: '/user/profile' });
         items.push({ label: LOGOUT, target: '/' });
 
         // for ADMIN and SUPER_USER

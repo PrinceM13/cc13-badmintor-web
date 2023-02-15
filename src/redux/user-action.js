@@ -1,5 +1,5 @@
 import * as userApi from '../apis/user-api';
-import { setCart, setProfile, setOrder, updateCartWithDeleteId, setOrders } from './user-slice';
+import { setCart, setProfile, setOrder, updateCartWithDeleteId, setOrders, setIsPickup } from './user-slice';
 
 export const getMyCart = () => async dispatch => {
     try {
@@ -35,7 +35,7 @@ const manageDeleteItemInCart = async productId => {
         console.error(err);
     }
 };
-export const createOrder = (rewardId, note, shippingInfo, pickupDate, orderItems) => async dispatch => {
+export const createOrder = (rewardId, note, shippingInfo, pickupDate, orderItems, isPickup) => async dispatch => {
     try {
         const myOrder = {
             // userId: should add at server-side
@@ -45,9 +45,9 @@ export const createOrder = (rewardId, note, shippingInfo, pickupDate, orderItems
             status: 'WAITING_FOR_PAYMENT',
             paymentReceipt: null,
             paymentDateTime: null,
-            isPickup: true,
+            isPickup: isPickup,
             address: `name: ${shippingInfo.firstName} ${shippingInfo.lastName}\naddress: ${shippingInfo.address}\nphone: ${shippingInfo.phone}`,
-            expectedDate: pickupDate,
+            expectedDateTime: pickupDate,
             userNote: note
         }
         dispatch(setOrder(myOrder));
@@ -55,12 +55,16 @@ export const createOrder = (rewardId, note, shippingInfo, pickupDate, orderItems
         const res = await userApi.createOrder(myOrder);
         const orderId = res.data.order.id;
         const newOrderItems = orderItems.map(item => ({ ...item, orderId }));
-        const orders = await userApi.getMyOrders();
-        dispatch(setOrders(orders.data.orders));  // set state
         // create order items
         await userApi.createOrderItems(newOrderItems);
         // delete cart
         const deleteProductIds = [];
+        // update orders
+        const orders = await userApi.getMyOrders();
+        dispatch(setOrders(orders.data.orders));  // set state
+        // clear
+        dispatch(setIsPickup(true));
+
         orderItems.forEach(item => {
             manageDeleteItemInCart(item.productId); // server
             deleteProductIds.push(item.productId);  // to update front-end

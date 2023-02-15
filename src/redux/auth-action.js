@@ -6,7 +6,7 @@ import { removeAccessToken, setAccessToken } from '../utils/local-storage';
 
 import { setUser } from './auth-slice';
 import { clearVisitor } from './visitor-slice';
-import { clearUser } from './user-slice';
+import { clearUser, clearOrders } from './user-slice';
 
 export const login = (email, password) => async (dispatch) => {
     try {
@@ -23,6 +23,7 @@ export const logout = () => dispatch => {
     dispatch(setUser(null));
     dispatch(clearVisitor());
     dispatch(clearUser());
+    dispatch(clearOrders());
 };
 
 export const fetchAuthUser = () => async (dispatch) => {

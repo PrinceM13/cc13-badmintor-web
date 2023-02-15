@@ -5,6 +5,7 @@ export const MY_CART = 'MY CART';
 export const MY_PROFILE = 'MY PROFILE';
 export const LOGIN = 'LOGIN';
 export const LOGOUT = 'LOGOUT';
+export const MY_ORDER = 'MY ORDER';
 
 export const CATEGORY_ID = 'categoryId';
 export const SUPPLIER_ID = 'supplierId';

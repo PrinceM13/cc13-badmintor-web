@@ -26,6 +26,7 @@ import ProductPage from '../pages/visitor/ProductPage';
 import ProductDetailPage from '../pages/visitor/ProductDetailPage';
 import ConfirmOrderPage from '../pages/user/ConfirmOrderPage';
 import PaymentPage from '../pages/user/PaymentPage';
+import OrderPage from '../pages/user/OrderPage';
 
 const router = createBrowserRouter([
     {
@@ -87,7 +88,8 @@ const router = createBrowserRouter([
             { path: 'cart', element: <CartPage /> },
             { path: 'profile', element: <ProfilePage /> },
             { path: 'confirm-order', element: <ConfirmOrderPage /> },
-            { path: 'payment', element: <PaymentPage /> }
+            { path: 'payment', element: <PaymentPage /> },
+            { path: 'orders', element: <OrderPage /> }
         ]
     },
     {
