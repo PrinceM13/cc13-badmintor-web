@@ -1,9 +1,9 @@
 import VerticalSpace from "./VerticalSpace";
 
-export default function PageTitle({ children }) {
+export default function PageTitle({ children, size = 'text-lg sm:text-2xl' }) {
     return (<>
         <VerticalSpace />
-        <div className="text-lg sm:text-2xl">{children}</div>
+        <div className={`${size}`}>{children}</div>
         <VerticalSpace />
     </>
     );

@@ -30,6 +30,15 @@ export const fetchAllProducts = () => async dispatch => {
         console.error(err);
     }
 };
+// get with cart items array
+export const fetchAllProductsInCart = cart => async dispatch => {
+    try {
+        const res = await visitorApi.getAllProductsInCart(cart);
+        dispatch(setProducts(res.data.products));
+    } catch (err) {
+        console.error(err);
+    }
+};
 
 export const fetchAllProductsByCategoryId = filterId => async dispatch => {
     try {

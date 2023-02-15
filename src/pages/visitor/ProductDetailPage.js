@@ -2,7 +2,7 @@ import { useEffect } from 'react'
 import { useParams, useLocation, useNavigate } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
 
-import { fetchAllProductsByCategoryId, fetchAllProductsByBrandId, fetchAllProductsWithPromotion } from '../../redux/visitor-action';
+import { fetchAllProductsByCategoryId, fetchAllProductsByBrandId, fetchAllProductsWithPromotion, fetchAllProductsInCart } from '../../redux/visitor-action';
 import { setPreviousPath } from '../../redux/visitor-slice';
 import { addToCart, increaseAmount } from '../../redux/user-slice';
 
@@ -56,6 +56,19 @@ export default function ProductDetailPage() {
         note: product.note
     }
 
+    // max stock
+    const productIds = cartItems.map(item => item.productId)
+    useEffect(() => { dispatch(fetchAllProductsInCart(productIds)) }, [cartItems]);
+    const cartProducts = useSelector(state => state.visitor.products)
+    const cartItemsAmount = cartItems.reduce((acc, el) => {
+        acc = { ...acc, [el.productId]: el.amount }
+        return acc;
+    }, {});
+    const objCartProduct = cartProducts.reduce((acc, el) => {
+        acc = { ...acc, [el.id]: el.quantity }
+        return acc;
+    }, {});
+
     const authenticatedUser = useSelector(state => state.auth.authenticatedUser);
     const navigate = useNavigate();
     const handleAddToCart = () => {
@@ -65,12 +78,13 @@ export default function ProductDetailPage() {
         }
         console.log(isExistInCart)
         if (!isExistInCart.length) { dispatch(addToCart(toCartItem)) }
-        else { dispatch(increaseAmount(id)); console.log('already exist !!!') }
+        else if (cartItemsAmount[id] < objCartProduct[id]) { dispatch(increaseAmount(id)); console.log('already exist !!!') }
+        else { alert('out of stock !') }
     }
     const handleBuyNow = () => {
         handleAddToCart();
         navigate('/user/cart');
-    }
+    };
 
     return (
         <ContentLayout>
@@ -91,8 +105,8 @@ export default function ProductDetailPage() {
                         <div className='text-sm sm:text-lg'>{product.note}</div>
                         <div className='flex justify-between'>
                             <div className='flex gap-4'>
-                                {price !== netPrice && <div className='text-lg sm:text-2xl line-through text-my-gray-2'>{price}</div>}
-                                <div className='text-lg sm:text-2xl text-my-mint'>{netPrice}</div>
+                                {price !== netPrice && <div className='text-lg sm:text-2xl line-through text-my-gray-2'>{Math.floor(price)}</div>}
+                                <div className='text-lg sm:text-2xl text-my-mint'>{Math.floor(netPrice)}</div>
                             </div>
                             <div className='text-base sm:text-xl text-my-gray-1 pr-4'>{product.quantity} Available</div>
                         </div>

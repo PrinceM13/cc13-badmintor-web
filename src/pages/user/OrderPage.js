@@ -7,7 +7,7 @@ import { setOrders } from "../../redux/user-slice";
 
 export default function OrderPage() {
     const myOrders = useSelector(state => state.user.orders);
-    const navigate = useNavigate();
+    // const navigate = useNavigate();
 
     return (
         <ContentLayout>
@@ -18,8 +18,9 @@ export default function OrderPage() {
                         const myDate = new Date(el.expectedDateTime);
                         return <div
                             key={el.id}
-                            onClick={() => navigate('/user/payment')}
-                            className='flex flex-col cursor-pointer gap-1 md:gap-2 p-2 md:py-4 md:px-8 rounded-lg border border-my-gray-1'
+                            // onClick={() => navigate('/user/payment')}
+                            // className='flex flex-col cursor-pointer gap-1 md:gap-2 p-2 md:py-4 md:px-8 rounded-lg border border-my-gray-1'
+                            className='flex flex-col gap-1 md:gap-2 p-2 md:py-4 md:px-8 rounded-lg border border-my-gray-1'
                         >
                             <div className="flex">
                                 <div className="w-1/5">{`oder id`}</div>
