@@ -14,6 +14,7 @@ import VerticalSpace from '../../components/VerticalSpace';
 import ProductImage from '../../features/product/ProductImage';
 import ContentLayout from "../../layouts/ContentLayout";
 import { BRANDS, CATEGORIES, PROMOTIONS } from '../../config/constant';
+import { PingPongIcon } from '../../images';
 
 export default function ProductDetailPage() {
     const { productId, filterId } = useParams();
@@ -86,6 +87,8 @@ export default function ProductDetailPage() {
         navigate('/user/cart');
     };
 
+    const ItemImage = <img className="rounded-lg" src={product.image} />;
+
     return (
         <ContentLayout>
             {/* <PageTitle>Product Detail {productId}</PageTitle> */}
@@ -97,8 +100,8 @@ export default function ProductDetailPage() {
             </div>
             <div className='flex flex-col p-4 gap-8'>
                 <div className='flex flex-col sm:flex-row items-center gap-4'>
-                    <div className='flex-shrink-0 w-[80%] max-w-[250px] sm:w-[250px] lg:max-w-[350px] lg:w-[350px]'>
-                        <ProductImage />
+                    <div className='flex flex-shrink-0 justify-center w-[80%] max-w-[250px] sm:w-[250px] lg:max-w-[350px] lg:w-[350px]'>
+                        {(product.image && product.image !== 'dummy') ? ItemImage : <PingPongIcon size='200px' />}
                     </div>
                     <div className='flex flex-col w-full gap-4'>
                         <div className='text-lg sm:text-2xl'>{product.name}</div>

@@ -12,7 +12,7 @@ const cartSlice = createSlice({
             const myCart = action.payload.map(el => ({
                 productId: el.productId,
                 name: el.Product.name,
-                image: el.Product.image !== 'dummy' || null,
+                image: el.Product.image,
                 amount: el.amount,
                 price: +el.Product.price,
                 discount: el.Product?.Promotion?.isActive ? +el.Product?.Promotion?.discount : 0,
