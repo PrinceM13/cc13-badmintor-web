@@ -27,6 +27,7 @@ import ProductDetailPage from '../pages/visitor/ProductDetailPage';
 import ConfirmOrderPage from '../pages/user/ConfirmOrderPage';
 import PaymentPage from '../pages/user/PaymentPage';
 import OrderPage from '../pages/user/OrderPage';
+import ManageOrder from '../pages/admin/ManageOrder';
 
 const router = createBrowserRouter([
     {
@@ -103,7 +104,8 @@ const router = createBrowserRouter([
             { path: 'categories', element: <ManageCategory /> },
             { path: 'suppliers', element: <ManageSupplier /> },
             { path: 'products', element: <ManageProduct /> },
-            { path: 'promotions', element: <ManagePromotion /> }
+            { path: 'promotions', element: <ManagePromotion /> },
+            { path: 'orders', element: <ManageOrder /> }
         ]
     },
     {

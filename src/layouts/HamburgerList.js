@@ -1,7 +1,7 @@
 import { Link } from 'react-router-dom'
 import { useDispatch, useSelector } from 'react-redux';
 
-import { ADMIN, BRANDS, CATEGORIES, LOGIN, LOGOUT, MANAGE_EMPLOYEE, MY_CART, MY_ORDER, MY_PROFILE, PROMOTIONS, SUPER_USER } from '../config/constant';
+import { ADMIN, BRANDS, CATEGORIES, LOGIN, LOGOUT, MANAGE_EMPLOYEE, MANAGE_ORDER, MY_CART, MY_ORDER, MY_PROFILE, PROMOTIONS, SUPER_USER } from '../config/constant';
 import { getAccessToken } from '../utils/local-storage';
 import { logout } from '../redux/auth-action';
 
@@ -28,6 +28,7 @@ export default function HamburgerList({ isHambugerListShow, onClose }) {
 
         // for ADMIN and SUPER_USER
         if ([ADMIN, SUPER_USER].includes(role)) {
+            items.push({ label: MANAGE_ORDER, target: '/admin/orders' });
         }
 
         // for SUPER_USER only
