@@ -22,8 +22,12 @@ export default function CartPage() {
 
     const handleCreateOrder = () => {
         const toOrderItems = cartItems.filter(el => el.selected === true);
-        dispatch(createOrderItems(toOrderItems));
-        navigate('/user/confirm-order');
+        if (toOrderItems.length === 0) {
+            alert('Please select atleast 1 item');
+        } else {
+            dispatch(createOrderItems(toOrderItems));
+            navigate('/user/confirm-order');
+        }
     };
 
     const handleBack = () => { navigate(-1) };

@@ -18,6 +18,8 @@ export default function HamburgerList({ isHambugerListShow, onClose }) {
         { label: MY_CART, target: '/user/cart' }
     ];
 
+    const cartItems = useSelector(state => state.user.cart);
+
     // for all user
     if (getAccessToken()) {
         myOrders.length !== 0 && items.push({ label: MY_ORDER, target: '/user/orders' })
@@ -43,8 +45,20 @@ export default function HamburgerList({ isHambugerListShow, onClose }) {
 
     const ListItems = items.map((item, idx) => (
         <Link key={idx} to={item.target}>
-            <div key={idx} name={item.label} onClick={handleOnClickLink} className={`px-7 py-3 w-full border ${idx === items.length - 1 ? 'rounded-b-lg' : ''} border-my-gray-1 bg-my-gray-2 text-left`}>
-                {item.label}
+            <div key={idx} name={item.label} onClick={handleOnClickLink} className={`flex justify-between px-7 py-3 w-full border ${idx === items.length - 1 ? 'rounded-b-lg' : ''} border-my-gray-1 bg-my-gray-2 text-left`}>
+                <div>
+                    {item.label}
+                </div>
+                {item.label === MY_CART && cartItems.length !== 0
+                    ? <div className='bg-my-mint text-my-gray-2 text-center font-bold w-6 rounded-full'>
+                        {cartItems.length}
+                    </div>
+                    : null}
+                {item.label === MY_ORDER && myOrders.length !== 0
+                    ? <div className='bg-yellow-200 text-my-gray-2 text-center font-bold w-6 rounded-full'>
+                        {myOrders.length}
+                    </div>
+                    : null}
             </div>
         </Link>
     ));

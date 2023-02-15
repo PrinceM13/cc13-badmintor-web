@@ -34,7 +34,7 @@ export default function CartCard({ isFirst = false, img, name, note = '', price,
                                 {price !== netPrice && <div className="line-through text-my-gray-2">{price}</div>}
                                 <div className="text-my-mint">{netPrice}</div>
                             </div>
-                            <Button size="text-xs md:text-base" theme="my-gray-1" p="px-2 py-1" >edit note</Button>
+                            {/* <Button size="text-xs md:text-base" theme="my-gray-1" p="px-2 py-1" >edit note</Button> */}
                         </div>
                     </div>
                 </div>
