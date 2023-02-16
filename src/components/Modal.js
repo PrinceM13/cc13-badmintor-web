@@ -5,7 +5,7 @@ export default function Modal({ children, title, isOpen, onClose, titleSize = 't
         <>
             {/* background */}
             <div
-                className={`${isOpen ? '' : 'hidden'} fixed top-0 left-0 w-full h-modal overflow-x-hidden overflow-y-auto bg-[#ffffffaa]`}
+                className={`${isOpen ? '' : 'hidden'} fixed top-0 left-0 w-full h-full overflow-x-hidden overflow-y-auto bg-[#ffffffaa]`}
                 onMouseDown={onClose}
             >
                 {/* card */}

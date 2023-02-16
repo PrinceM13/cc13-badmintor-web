@@ -14,7 +14,7 @@ export default function ProductCard({ children, id, image }) {
         <div className={`flex flex-col gap-2 py-4 justify-center items-center w-[40%] sm:w-[220px] ${setBgBorder} rounded-lg shadow`}>
             <div className='flex justify-center w-3/4'>
                 <Link to={redirectPath}>
-                    {(image && image !== 'dummy') ? ItemImage : <PingPongIcon size='200px' />}
+                    {(image && image !== 'dummy') ? ItemImage : <PingPongIcon size='136px' />}
                 </Link>
             </div>
             <div>

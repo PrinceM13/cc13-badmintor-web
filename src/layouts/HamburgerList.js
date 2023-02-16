@@ -8,6 +8,7 @@ import { logout } from '../redux/auth-action';
 export default function HamburgerList({ isHambugerListShow, onClose }) {
     const authenticatedUser = useSelector(state => state.auth.authenticatedUser);
     const myOrders = useSelector(state => state.user.orders);
+    const allOrders = useSelector(state => state.admin.orders);
     const role = authenticatedUser?.Employee?.role;
     const dispatch = useDispatch();
 
@@ -58,6 +59,11 @@ export default function HamburgerList({ isHambugerListShow, onClose }) {
                 {item.label === MY_ORDER && myOrders.length !== 0
                     ? <div className='bg-yellow-200 text-my-gray-2 text-center font-bold w-6 rounded-full'>
                         {myOrders.length}
+                    </div>
+                    : null}
+                {item.label === MANAGE_ORDER && allOrders.length !== 0
+                    ? <div className='bg-pink-300 text-my-gray-2 text-center font-bold w-6 rounded-full'>
+                        {allOrders.length}
                     </div>
                     : null}
             </div>
