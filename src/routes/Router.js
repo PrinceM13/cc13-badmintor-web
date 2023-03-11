@@ -28,6 +28,7 @@ import ConfirmOrderPage from '../pages/user/ConfirmOrderPage';
 import PaymentPage from '../pages/user/PaymentPage';
 import OrderPage from '../pages/user/OrderPage';
 import ManageOrder from '../pages/admin/ManageOrder';
+import { Navigate } from 'react-router-dom';
 
 const router = createBrowserRouter([
     {
@@ -118,7 +119,9 @@ const router = createBrowserRouter([
         children: [
             { path: 'employees', element: <ManageEmployee /> }
         ]
-    }
+    },
+    // redirect to root if wrong path
+    { path: '*', element: <Navigate to='/' /> }
 ]);
 
 export default function Router() {
