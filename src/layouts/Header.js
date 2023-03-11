@@ -1,16 +1,19 @@
 import { useState } from "react";
 import { Link } from 'react-router-dom';
 
+import useClickOutside from '../hooks/useClickOutside';
+
 import { HamburgerIcon, SearchIcon } from "../images";
 import HamburgerList from "./HamburgerList";
 
 export default function Header() {
     const [isHambugerListShow, setIsHambugerListShow] = useState(false);
+    const outsideClick = useClickOutside(() => setIsHambugerListShow(false));
 
     return (
         <>
             <div className="relative bg-my-gray-3 flex items-end text-center h-16 px-3 py-3 text-xl">
-                <div className="px-1 py-0.5 cursor-pointer" >
+                <div ref={outsideClick} className="px-1 py-0.5 cursor-pointer" >
                     <div onClick={() => setIsHambugerListShow(!isHambugerListShow)}>
                         <HamburgerIcon />
                     </div>
