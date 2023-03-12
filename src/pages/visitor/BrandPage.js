@@ -14,9 +14,9 @@ export default function BrandPage() {
     useEffect(() => { dispatch(fetchAllBrands()) }, []);
 
     return (
-        <ContentLayout>
+        <>
             <PageTitle>{BRANDS}</PageTitle>
             <ItemList items={brands} keyToShow={'brand'} />
-        </ContentLayout>
+        </>
     );
 };

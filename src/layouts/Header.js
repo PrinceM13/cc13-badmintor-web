@@ -12,7 +12,7 @@ export default function Header() {
 
     return (
         <>
-            <div className="relative bg-my-gray-3 flex items-end text-center h-16 px-3 py-3 text-xl">
+            <div className="relative bg-my-gray-3 flex items-end text-center h-[8vh] px-3 py-3 text-xl">
                 <div ref={outsideClick} className="px-1 py-0.5 cursor-pointer" >
                     <div onClick={() => setIsHambugerListShow(!isHambugerListShow)}>
                         <HamburgerIcon />

@@ -4,9 +4,9 @@ import ContentLayout from "../../layouts/ContentLayout";
 
 export default function ManageOrder() {
     return (
-        <ContentLayout>
+        <>
             <PageTitle>MANAGE ORDER</PageTitle>
             <DisplayOrder />
-        </ContentLayout>
+        </>
     );
 };

@@ -42,7 +42,7 @@ export default function CartPage() {
     }, [cartItems]);
 
     return (
-        <ContentLayout>
+        <>
             {cartItems.length === 0
                 ?
                 <div className='flex justify-center py-[25%]'>
@@ -62,6 +62,6 @@ export default function CartPage() {
                     </div>
                 </>
             }
-        </ContentLayout>
+        </>
     );
 };

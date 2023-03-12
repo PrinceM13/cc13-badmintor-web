@@ -54,7 +54,7 @@ export default function ConfirmOrderPage() {
     useEffect(() => { dispatch(getMyInfo()) }, []);
 
     return (
-        <ContentLayout>
+        <>
             <PageTitle>CONFIRM ORDER</PageTitle>
             <OrderList />
             <VerticalSpace />
@@ -85,6 +85,6 @@ export default function ConfirmOrderPage() {
             <div onClick={handleBack}>
                 <Button width="w-full" theme="my-gray-1" rounded="rounded-full" >BACK</Button>
             </div>
-        </ContentLayout>
+        </>
     );
 };

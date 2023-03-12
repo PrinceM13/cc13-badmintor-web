@@ -3,11 +3,12 @@ import { Link } from 'react-router-dom';
 import { PingPongIcon } from '../images/index';
 
 export default function ProductCard({ children, id, image }) {
-    const needBg = true;
+    const needBg = false;
     const needBorder = true;
 
     const ItemImage = <img className="rounded-lg" src={image} alt={children} />;
-    const setBgBorder = `${needBg ? 'bg-my-gray-3' : ''} ${needBorder ? 'border border-my-gray-1' : ''}`;
+    const setBgBorder = `${needBg ? 'bg-my-gray-3' : ''} shadow-md shadow-my-gray-2`;
+    // const setBgBorder = `${needBg ? 'bg-my-gray-3' : ''} ${needBorder ? 'border border-my-gray-1' : ''}`;
     const redirectPath = 'product-' + id;   // need to be string
 
     return (

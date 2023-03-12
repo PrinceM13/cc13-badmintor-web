@@ -14,9 +14,9 @@ export default function CategoryPage() {
     useEffect(() => { dispatch(fetchAllCategories()) }, []);
 
     return (
-        <ContentLayout>
+        <>
             <PageTitle>{CATEGORIES}</PageTitle>
             <ItemList items={categories} keyToShow={'category'} />
-        </ContentLayout>
+        </>
     );
 };
