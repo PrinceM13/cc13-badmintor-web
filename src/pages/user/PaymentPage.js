@@ -8,7 +8,7 @@ export default function PaymentPage() {
     const handleSubmitPayment = () => { console.log('need to send slip to server') }
 
     return (
-        <ContentLayout>
+        <>
             <PageTitle>PAYMENT</PageTitle>
             <div className='flex flex-col'>
                 <div className='flex justify-center'>
@@ -32,6 +32,6 @@ export default function PaymentPage() {
             <div onClick={handleSubmitPayment}>
                 <Button width='w-full' rounded='rounded-full'>SUBMIT PAYMENT</Button>
             </div>
-        </ContentLayout>
+        </>
     );
 };

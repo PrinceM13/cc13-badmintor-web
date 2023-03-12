@@ -3,6 +3,7 @@ import PageTitle from "../../components/PageTitile";
 import VerticalSpace from "../../components/VerticalSpace";
 import { PROMOTIONS } from "../../config/constant";
 import ContentLayout from "../../layouts/ContentLayout";
+import Header from "../../layouts/Header";
 import ProductPage from './ProductPage';
 
 export default function HomePage() {
@@ -10,17 +11,18 @@ export default function HomePage() {
 
     return (
         <>
+            <Header />
             <ContentLayout>
                 <PageTitle>WELCOME TO BADMINTER</PageTitle>
                 <div className="relative -z-10">
                     {/* <div className="flex justify-center absolute bottom-5 md:bottom-10 left-[42%]">
                         <Button size="text-xs md:text-xl" p="px-2 py-1">LOGIN NOW</Button>
                     </div> */}
-                    <img className="rounded-lg shadow-lg shadow-my-gray-3" src={headerImage}></img>
+                    <img className="rounded-lg" src={headerImage}></img>
                 </div>
                 <VerticalSpace />
+                <ProductPage filterBy={PROMOTIONS} />
             </ContentLayout>
-            <ProductPage filterBy={PROMOTIONS} />
         </>
     );
 };

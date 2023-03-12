@@ -14,9 +14,9 @@ export default function ManageEmployee() {
     useEffect(() => { dispatch(getAllEmployee()) }, []);
 
     return (
-        <ContentLayout>
+        <>
             <PageTitle>{MANAGE_EMPLOYEE}</PageTitle>
             <DisplayEmployee />
-        </ContentLayout>
+        </>
     );
 };

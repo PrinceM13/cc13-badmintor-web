@@ -90,7 +90,7 @@ export default function ProductDetailPage() {
     const ItemImage = <img className="rounded-lg" src={product.image} />;
 
     return (
-        <ContentLayout>
+        <>
             {/* <PageTitle>Product Detail {productId}</PageTitle> */}
             <div>
                 <VerticalSpace />
@@ -124,6 +124,6 @@ export default function ProductDetailPage() {
                     </div>
                 </div>
             </div>
-        </ContentLayout>
+        </>
     );
 };

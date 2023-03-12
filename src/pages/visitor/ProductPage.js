@@ -24,9 +24,9 @@ export default function ProductPage({ filterBy }) {
     }, [filterBy]); // need to add filter as trigger to fetch new data when change route (because Product Page is reuse-page)
 
     return (
-        <ContentLayout>
+        <>
             <PageTitle>{filterBy}</PageTitle>
             <ProductList items={products} keyToShow={'name'} />
-        </ContentLayout>
+        </>
     );
 };

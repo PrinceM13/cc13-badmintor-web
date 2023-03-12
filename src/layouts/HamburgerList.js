@@ -71,7 +71,7 @@ export default function HamburgerList({ isHambugerListShow, onClose }) {
     ));
 
     return (
-        <div className="absolute w-3/4 top-16 left-0 text-base rounded-lg bor">
+        <div className="absolute w-3/4 top-[8vh] left-0 text-base rounded-lg bor">
             {isHambugerListShow && ListItems}
         </div>
 

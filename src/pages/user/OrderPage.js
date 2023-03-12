@@ -10,7 +10,7 @@ export default function OrderPage() {
     // const navigate = useNavigate();
 
     return (
-        <ContentLayout>
+        <>
             <PageTitle>MY ORDER</PageTitle>
             <div className="flex justify-center text-xs md:text-lg">
                 <div className="flex flex-col gap-4 md:w-[80%] px-2 md:px-4">
@@ -45,6 +45,6 @@ export default function OrderPage() {
                     })}
                 </div>
             </div>
-        </ContentLayout>
+        </>
     );
 }

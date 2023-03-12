@@ -39,13 +39,7 @@ const router = createBrowserRouter([
             </RedirectIfAuthenticate>
         )
     },
-    {
-        path: '/',
-        element: <MainLayout />,
-        children: [
-            { path: '', element: <HomePage /> }
-        ]
-    },
+    { path: '/', element: <HomePage /> },
     // {
     //     path: 'products',
     //     element: <MainLayout />,
