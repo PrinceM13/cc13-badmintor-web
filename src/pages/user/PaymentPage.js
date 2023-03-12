@@ -1,14 +1,24 @@
-import Button from '../../components/Button';
+import { useLocation } from 'react-router-dom'
 
+import Button from '../../components/Button';
+import CheckoutCreditCard from '../../components/CheckoutCreditCard';
 import PageTitle from "../../components/PageTitile";
 import VerticalSpace from '../../components/VerticalSpace';
 import ContentLayout from "../../layouts/ContentLayout";
+import * as checkoutApi from '../../apis/checkout-api';
 
 export default function PaymentPage() {
+    const { state: { amount } } = useLocation()
     const handleSubmitPayment = () => { console.log('need to send slip to server') }
+    
+    const createCreditCardCharge = async (email, detail, amount, token) => {
+        const res = await checkoutApi.creditCard({ email, detail, amount, token });
+        console.log('from back ---> ', res)
+    }
 
     return (
         <>
+            <CheckoutCreditCard createCreditCardCharge={createCreditCardCharge} amount={amount * 100} />
             <PageTitle>PAYMENT</PageTitle>
             <div className='flex flex-col'>
                 <div className='flex justify-center'>
