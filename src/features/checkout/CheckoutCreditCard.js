@@ -1,6 +1,8 @@
 import Script from 'react-load-script';
+import { publicKey } from '../../confidential/keys';
+
 import { useSelector } from 'react-redux';
-import Button from './Button';
+import Button from '../../components/Button';
 
 export default function CheckoutCreditCard ({ createCreditCardCharge, amount }){
     const order = useSelector(state => state.user.order);
@@ -9,7 +11,7 @@ export default function CheckoutCreditCard ({ createCreditCardCharge, amount }){
     const handleLoadScript = () => {
         OmiseCard = window.OmiseCard;
         OmiseCard.configure({
-            publicKey: 'pkey_test_5v35513b8xzoujo9hx5',
+            publicKey ,
             currency: 'THB',
             frameLabel: 'BADMINTER',
             submitLabel: 'PAY NOW',
@@ -44,7 +46,6 @@ export default function CheckoutCreditCard ({ createCreditCardCharge, amount }){
 
     return (
         <div>
-            Credit Card
             <Script
                 url="https://cdn.omise.co/omise.js"
                 onLoad={handleLoadScript}

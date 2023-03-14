@@ -7,9 +7,11 @@ import { fetchAuthUser } from './redux/auth-action';
 import { getMyCart } from './redux/user-action';
 import { getAccessToken } from './utils/local-storage';
 import { setOrders } from './redux/user-slice';
+import ClimbingBoxLoader from './components/spinners/ClimbingBoxLoader';
 
 function App() {
   const dispatch = useDispatch();
+  const loading = useSelector(state => state.spinner.loading)
 
   // user info
   useEffect(() => { if (getAccessToken()) { dispatch(fetchAuthUser()) } }, []);
@@ -27,6 +29,7 @@ function App() {
 
   return (
     <>
+      {loading && <ClimbingBoxLoader />}
       <Router />
     </>
   );

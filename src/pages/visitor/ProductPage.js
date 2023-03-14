@@ -26,7 +26,7 @@ export default function ProductPage({ filterBy }) {
     return (
         <>
             <PageTitle>{filterBy}</PageTitle>
-            <ProductList items={products} keyToShow={'name'} />
+            <ProductList items={products} filterBy={filterBy} keyToShow={'name'} />
         </>
     );
 };
