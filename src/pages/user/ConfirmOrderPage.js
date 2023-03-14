@@ -45,7 +45,8 @@ export default function ConfirmOrderPage() {
     const handleChoosePayment = () => {
         dispatch(createOrder(1, note, shippingInfo, pickupDate.toISOString(), orderItems, isPickup));
         console.log(pickupDate.toISOString())
-        navigate('/user/payment');
+        navigate('/user/payment', { state: { amount: total }});
+        // navigate('/user/payment', { state: { paymentMethod: 'credit-card', amount: total }});
     };
 
     const handleBack = () => { navigate('/user/cart') };
